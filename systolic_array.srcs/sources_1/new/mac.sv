@@ -19,6 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+// USE THESE BASEJUMP_STL MODULES
+// https://github.com/bespoke-silicon-group/basejump_stl/blob/master/bsg_fpu/bsg_fpu_preprocess.v
+// https://github.com/bespoke-silicon-group/basejump_stl/blob/master/bsg_fpu/bsg_fpu_defines.vh
+// https://github.com/bespoke-silicon-group/basejump_stl/blob/master/bsg_misc/bsg_defines.v
+// https://github.com/bespoke-silicon-group/basejump_stl/blob/master/bsg_fpu/bsg_fpu_add_sub.v
+// https://github.com/bespoke-silicon-group/basejump_stl/blob/master/bsg_fpu/bsg_fpu_mul.v
 
 module mac(
 
