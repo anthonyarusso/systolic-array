@@ -65,6 +65,46 @@ module mac
     , output logic underflow_o
 );
 
+// State machine (one-hot)
+typedef enum logic [3:0] {
+    READY_S    = 4'b0001,
+    MULT_S     = 4'b0010,
+    ACCUM_S    = 4'b0100,
+    DONE_S     = 4'b1000
+} state_e;
+
+state_e state_r, state_n;
+logic [e_p+m_p:0] a_r, b_r, accum_r;
+wire [0:0] multiply_done_w, add_done_w;
+
+wire [0:0] all_consumers_rv_w, downstream_consumed_w;
+assign all_consumers_rv = a_v_i & b_v_i & a_ready_o & b_ready_o;
+assign downstream_consumed_w = a_yumi_i & b_yumi_i; 
+
+// Define state transition according to the current state and case signals.
+always_comb begin
+    casez ({state_r, all_consumers_rv, multiply_done_w, add_done_w, downstream_consumed_w})
+        {READY_S, 4'b1???} : state_n = MULT_S;
+        {MULT_S,  4'b?1??} : state_n = ACCUM_S;
+        {ACCUM_S, 4'b??1?} : state_n = DONE_S;
+        {DONE_S,  4'b???1} : state_n = READY_S;
+    endcase
+end
+
+// Update state
+always_ff @ (posedge clk_i) begin
+    if (reset_i) begin
+    // RESET
+    state_r <= READY_S;
+    accum_r <= '0;
+    end else if (en_i) begin
+    // UPDATE
+    state_r <= state_n;
+    accum_r <= '0; // TODO: assign sum here
+    end
+    // HOLD
+end
+
 // The add_sub and mul modules use all the same IO except add_sub also has a "sub_i" control input which I leave unused.
 
 // If both consumers are ready AND valid, save a_i and b_i to registers and enter the multiplication state.
