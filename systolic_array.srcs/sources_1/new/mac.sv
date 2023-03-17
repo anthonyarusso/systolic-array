@@ -26,6 +26,9 @@
 // https://github.com/bespoke-silicon-group/basejump_stl/blob/master/bsg_fpu/bsg_fpu_add_sub.v
 // https://github.com/bespoke-silicon-group/basejump_stl/blob/master/bsg_fpu/bsg_fpu_mul.v
 
+// Good question to ask: Do the Basejump FPU modules only reset if enable is also active? (I'm guessing so.)
+// Possible optimization, allow MAC to generate the next partial product when faced with backpressure.
+
 module mac
   #(parameter `BSG_INV_PARAM(e_p)     // exponent width
     , parameter `BSG_INV_PARAM(m_p)   // mantissa width
@@ -75,35 +78,104 @@ typedef enum logic [3:0] {
 
 state_e state_r, state_n;
 logic [e_p+m_p:0] a_r, b_r, accum_r;
-wire [0:0] multiply_done_w, add_done_w;
+wire [0:0] mult_ready_w, mult_done_w, add_ready_w, add_done_w;
 
 wire [0:0] all_consumers_rv_w, downstream_consumed_w;
-assign all_consumers_rv = a_v_i & b_v_i & a_ready_o & b_ready_o;
-assign downstream_consumed_w = a_yumi_i & b_yumi_i; 
+assign all_consumers_rv_w = a_v_i & b_v_i & a_ready_o & b_ready_o;
+assign downstream_consumed_w = a_yumi_i & b_yumi_i;
+assign a_ready_o = (state_r == READY_S);
+assign b_ready_o = (state_r == READY_S);
 
 // Define state transition according to the current state and case signals.
 always_comb begin
-    casez ({state_r, all_consumers_rv, multiply_done_w, add_done_w, downstream_consumed_w})
-        {READY_S, 4'b1???} : state_n = MULT_S;
-        {MULT_S,  4'b?1??} : state_n = ACCUM_S;
-        {ACCUM_S, 4'b??1?} : state_n = DONE_S;
-        {DONE_S,  4'b???1} : state_n = READY_S;
+    casez ({state_r, all_consumers_rv_w, mult_ready_w, mult_done_w, add_ready_w, add_done_w, downstream_consumed_w})
+        {READY_S, 6'b11????} : state_n = MULT_S;
+        {MULT_S,  6'b??11??} : state_n = ACCUM_S;
+        {ACCUM_S, 6'b????1?} : state_n = DONE_S;
+        {DONE_S,  6'b?1???1} : state_n = READY_S;
+        default : state_n = state_r; // HOLD
     endcase
 end
 
-// Update state
 always_ff @ (posedge clk_i) begin
     if (reset_i) begin
     // RESET
     state_r <= READY_S;
-    accum_r <= '0;
     end else if (en_i) begin
     // UPDATE
     state_r <= state_n;
-    accum_r <= '0; // TODO: assign sum here
     end
     // HOLD
 end
+
+always_ff @ (posedge clk_i) begin
+    if (reset_i) begin
+    // RESET
+        a_r <= '0;
+        b_r <= '0;
+    end else if (en_i & all_consumers_rv_w) begin
+    // UPDATE
+        a_r <= a_i;
+        b_r <= b_i;
+    end
+    // HOLD
+end
+
+wire [e_p+m_p:0] mult_res_w;
+wire [0:0] mult_unimplemented_w, mult_invalid_w, mult_overflow_w, mult_underflow_w;
+
+bsg_fpu_mul
+  #(e_p, m_p)
+  (
+    .clk_i(clk_i)
+    ,.reset_i(reset_i)
+    ,.en_i(en_i)
+    ,.v_i(state_r == MULT_S)
+    ,.a_i(a_r)
+    ,.b_i(b_r)
+    ,.ready_o(mult_ready_w)
+    ,.v_o(mult_done_w)
+    ,.z_o(mult_res_w)
+    ,.unimplemented_o(mult_unimplemented_w)
+    ,.invalid_o(mult_invalid_w)
+    ,.overflow_o(mult_overflow_w)
+    ,.underflow_o(mult_underflow_w)
+    ,.yumi_i(add_ready_w)
+  );
+  
+wire [e_p+m_p:0] add_res_w;
+wire [0:0] add_unimplemented_w, add_invalid_w, add_overflow_w, add_underflow_w;
+
+bsg_fpu_add_sub
+  #(e_p, m_p)
+  (
+    .clk_i(clk_i)
+    ,.reset_i(reset_i)
+    ,.en_i(en_i)
+    ,.v_i(state_r == ACCUM_S)
+    ,.a_i(accum_r)
+    ,.b_i(mult_res_w)
+    ,.sub_i(1'b0)
+    ,.ready_o(add_ready_w)
+    ,.v_o(add_done_w)
+    ,.z_o(add_res_w)
+    ,.unimplemented_o(add_unimplemented_w)
+    ,.invalid_o(add_invalid_w)
+    ,.overflow_o(add_overflow_w)
+    ,.underflow_o(add_underflow_w)
+    ,.yumi_i(downstream_consumed_w)
+  );
+  
+  always_ff @ (posedge clk_i) begin
+    if (reset_i) begin
+    // RESET
+    accum_r <= '0;
+    end else if (en_i & add_done_w) begin
+    // UPDATE
+    accum_r <= add_res_w;
+    end
+    // HOLD
+  end
 
 // The add_sub and mul modules use all the same IO except add_sub also has a "sub_i" control input which I leave unused.
 
