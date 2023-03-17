@@ -1,0 +1,45 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/bsg_fpu_add_sub.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bsg_fpu_add_sub
+WARNING: [VRFC 10-3467] initial value of parameter 'e_p' is omitted [C:/Users/aarusso/Downloads/bsg_fpu_add_sub.sv:15]
+WARNING: [VRFC 10-3467] initial value of parameter 'm_p' is omitted [C:/Users/aarusso/Downloads/bsg_fpu_add_sub.sv:16]
+INFO: [VRFC 10-311] analyzing module bsg_fpu_add_sub__abstract
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/bsg_fpu_clz.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bsg_fpu_clz
+WARNING: [VRFC 10-3467] initial value of parameter 'width_p' is omitted [C:/Users/aarusso/Downloads/bsg_fpu_clz.v:25]
+INFO: [VRFC 10-311] analyzing module bsg_fpu_clz__abstract
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/bsg_fpu_mul.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bsg_fpu_mul
+WARNING: [VRFC 10-3467] initial value of parameter 'e_p' is omitted [C:/Users/aarusso/Downloads/bsg_fpu_mul.sv:15]
+WARNING: [VRFC 10-3467] initial value of parameter 'm_p' is omitted [C:/Users/aarusso/Downloads/bsg_fpu_mul.sv:16]
+INFO: [VRFC 10-311] analyzing module bsg_fpu_mul__abstract
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/bsg_fpu_preprocess.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bsg_fpu_preprocess
+WARNING: [VRFC 10-3467] initial value of parameter 'e_p' is omitted [C:/Users/aarusso/Downloads/bsg_fpu_preprocess.sv:10]
+WARNING: [VRFC 10-3467] initial value of parameter 'm_p' is omitted [C:/Users/aarusso/Downloads/bsg_fpu_preprocess.sv:11]
+INFO: [VRFC 10-311] analyzing module bsg_fpu_preprocess__abstract
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/bsg_fpu_sticky.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bsg_fpu_sticky
+WARNING: [VRFC 10-3467] initial value of parameter 'width_p' is omitted [C:/Users/aarusso/Downloads/bsg_fpu_sticky.v:19]
+INFO: [VRFC 10-311] analyzing module bsg_fpu_sticky__abstract
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/bsg_less_than.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bsg_less_than
+WARNING: [VRFC 10-3467] initial value of parameter 'width_p' is omitted [C:/Users/aarusso/Downloads/bsg_less_than.v:9]
+INFO: [VRFC 10-311] analyzing module bsg_less_than__abstract
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/bsg_mul_synth.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bsg_mul_synth
+WARNING: [VRFC 10-3467] initial value of parameter 'width_p' is omitted [C:/Users/aarusso/Downloads/bsg_mul_synth.v:9]
+INFO: [VRFC 10-311] analyzing module bsg_mul_synth__abstract
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/bsg_reduce.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bsg_reduce
+WARNING: [VRFC 10-3467] initial value of parameter 'width_p' is omitted [C:/Users/aarusso/Downloads/bsg_reduce.v:8]
+INFO: [VRFC 10-311] analyzing module bsg_reduce__abstract
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/systolic_array/systolic_array.srcs/sources_1/new/mac.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mac
+WARNING: [VRFC 10-3467] initial value of parameter 'e_p' is omitted [C:/Users/aarusso/systolic_array/systolic_array.srcs/sources_1/new/mac.sv:33]
+WARNING: [VRFC 10-3467] initial value of parameter 'm_p' is omitted [C:/Users/aarusso/systolic_array/systolic_array.srcs/sources_1/new/mac.sv:34]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/nonsynth_clock_gen.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module nonsynth_clock_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/Downloads/nonsynth_reset_gen.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module nonsynth_reset_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/aarusso/systolic_array/systolic_array.srcs/sim_1/new/mac_tb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mac_tb

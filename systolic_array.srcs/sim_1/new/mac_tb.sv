@@ -19,11 +19,13 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+`include "bsg_defines.v"
 
 module mac_tb();
 
 localparam e_p = 8; // exponent
 localparam m_p = 23; // mantissa
+localparam iter_p = 12;
 
 // Local variables
 logic [e_p+m_p:0] a_i, b_i;
@@ -32,9 +34,10 @@ wire [e_p+m_p:0] a_o, b_o, mac_o;
 wire [0:0] a_ready_o, b_ready_o, a_v_o, b_v_o,
     unimplemented_o, invalid_o, overflow_o, underflow_o;
 
-// Testbench outputs
+// Testbench variables
 logic [e_p+m_p:0] correct_o;
 logic [0:0] error_o;
+int itervar;
 
 wire [0:0] clk_i, reset_i;
 
@@ -84,6 +87,7 @@ initial begin
       #10;
       $display("Begin Test:");
       $display();
+      @(negedge reset_i);
       a_v_i = 1'b0; b_v_i = 1'b0; a_yumi_i = 1'b0; b_yumi_i = 1'b0;
       a_i = '0;
       b_i = '0;
@@ -102,14 +106,18 @@ initial begin
       correct_o = 32'h4cd60128; // +112200000.0
       
       #10;
-      // Wait for MAC to finish operation.
-      @((a_v_o & b_v_o)); // no posedge?
+      for (itervar = 0; itervar < iter_p; itervar++) begin
+          @(posedge(clk_i));
+           if (a_v_o & b_v_o) break; // MAC is done
+      end
+      if (itervar == iter_p) $display("\033[0;31mError!\033[0m: MAC timed out!"); $finish();
       if (error_o) begin
-        $display("\033[0;31mError!\033[0m: MAC is %h", mac_o, " should be %h.", correct_o);
+        $display("\033[0;31mError!\033[0m: At posedge %d: ", itervar, "MAC is %h", mac_o, " should be %h.", correct_o);
         $finish();
       end
       a_yumi_i = 1'b1; b_yumi_i = 1'b1; // consume
       
+      // Success (probably)
       $finish();
 end
 

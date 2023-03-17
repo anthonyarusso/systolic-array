@@ -93,7 +93,7 @@ always_comb begin
         {MULT_S,  6'b??11??} : state_n = ACCUM_S;
         {ACCUM_S, 6'b????1?} : state_n = DONE_S;
         {DONE_S,  6'b?1???1} : state_n = READY_S;
-        default : state_n = state_r; // HOLD
+        default; // HOLD
     endcase
 end
 
@@ -126,6 +126,7 @@ wire [0:0] mult_unimplemented_w, mult_invalid_w, mult_overflow_w, mult_underflow
 
 bsg_fpu_mul
   #(e_p, m_p)
+  fpu_mul_inst
   (
     .clk_i(clk_i)
     ,.reset_i(reset_i)
@@ -148,6 +149,7 @@ wire [0:0] add_unimplemented_w, add_invalid_w, add_overflow_w, add_underflow_w;
 
 bsg_fpu_add_sub
   #(e_p, m_p)
+  fpu_add_sub_inst
   (
     .clk_i(clk_i)
     ,.reset_i(reset_i)

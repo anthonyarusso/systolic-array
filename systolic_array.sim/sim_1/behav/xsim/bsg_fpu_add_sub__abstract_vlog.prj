@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../Downloads" \
+"../../../../../Downloads/bsg_fpu_preprocess.v" \
+
+sv xil_defaultlib  --include "../../../../../Downloads" \
+"../../../../../Downloads/bsg_fpu_add_sub.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
