@@ -63,38 +63,62 @@ module mac
     
     state_e state_r, state_n;
     logic [width_p:0] a_r, b_r, accum_r;
-    logic [0:0] all_consumers_rv_l;
+    logic [0:0] all_consumers_rv_l,consumed_l;
     
-    // assign a_ready_o = ;
+    // Assign outputs
+    assign a_o = a_r;
+    assign b_o = b_r;
+    assign a_ready_o = (state_r == READY_S);
+    assign b_ready_o = (state_r == READY_S);
+    assign a_valid_o = (state_r == DONE_S);
+    assign b_valid_o = (state_r == DONE_S);
     assign all_consumers_rv_l = a_valid_i & a_ready_o & b_valid_i & b_ready_o;
+    assign consumed_l = a_yumi_i & b_yumi_i;
     
-    always_ff @(posedge clk_i) begin
-        if (reset_i) begin
-            // RESET
-            state_r <= READY_S;
-        end else if (en_i) begin
-            // UPDATE
-            state_r <= state_n;
-        end
-            // HOLD
+    always_comb begin
+        unique casez ({state_r, all_consumers_rv_l, consumed_l})
+            {READY_S, 2'b1?} : state_n = MULT_S;
+            {MULT_S,  2'b??} : state_n = ACCUM_S; // always transition
+            {ACCUM_S, 2'b??} : state_n = DONE_S; // always transition
+            {DONE_S,  2'b?1} : state_n = READY_S;
+            default : state_n = state_r; // HOLD
+        endcase
     end
     
     always_ff @(posedge clk_i) begin
         if (reset_i) begin
-            // RESET
+            state_r <= READY_S;
+        end else if (en_i) begin
+            state_r <= state_n;
+        end
+    end
+    
+    always_ff @(posedge clk_i) begin
+        if (reset_i) begin
             a_r <= '0;
             b_r <= '0;
-        end else if (en_i) begin // AND ready
-            // UPDATE
+        end else if (en_i & (state_r == READY_S)) begin
             a_r <= a_i;
             b_r <= b_i;
         end
-            // HOLD
     end
     
-    logic [width_p:0] product_l;
-    assign product_l = a_r * b_r;
+    logic [width_p:0] product_r;
     
+    always_ff @(posedge clk_i) begin
+        if (reset_i) begin
+            product_r <= '0;
+        end else if (en_i & (state_r == MULT_S)) begin
+            product_r <= a_r * b_r;
+        end
+    end
     
+    always_ff @(posedge clk_i) begin
+        if (reset_i) begin
+            accum_r <= '0;
+        end else if (en_i & (state_r == ACCUM_S)) begin
+            accum_r <= accum_r + product_r;
+        end
+    end
     
 endmodule
