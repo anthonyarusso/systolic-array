@@ -5,5 +5,5 @@ May 24 2019
 C:/Users/aarusso/systolic_array/systolic_array.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
 C:/Users/aarusso/systolic_array/systolic_array.srcs/sim_1/new/nonsynth_clock_gen.sv,1679112421,systemVerilog,,C:/Users/aarusso/systolic_array/systolic_array.srcs/sim_1/new/nonsynth_reset_gen.sv,,nonsynth_clock_gen,,,,,,,,
 C:/Users/aarusso/systolic_array/systolic_array.srcs/sim_1/new/nonsynth_reset_gen.sv,1679112447,systemVerilog,,C:/Users/aarusso/systolic_array/systolic_array.srcs/sim_1/new/testbench.sv,,nonsynth_reset_gen,,,,,,,,
-C:/Users/aarusso/systolic_array/systolic_array.srcs/sim_1/new/testbench.sv,1679115409,systemVerilog,,,,testbench,,,,,,,,
+C:/Users/aarusso/systolic_array/systolic_array.srcs/sim_1/new/testbench.sv,1679167887,systemVerilog,,,,testbench,,,,,,,,
 C:/Users/aarusso/systolic_array/systolic_array.srcs/sources_1/new/mac.sv,1679113390,systemVerilog,,C:/Users/aarusso/systolic_array/systolic_array.srcs/sim_1/new/nonsynth_clock_gen.sv,,mac,,,,,,,,

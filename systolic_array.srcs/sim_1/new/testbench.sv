@@ -102,9 +102,38 @@ initial begin
             correct_o); 
         $finish();
     end
+    a_valid_i = 1'b0; b_valid_i = 1'b0;
+    a_yumi_i = 1'b1; b_yumi_i = 1'b1; // consume
+    #20;
+    a_i = 32'd1_750; b_i = 32'd33_824;
+    correct_o = 32'd59_341_730; // 59_192_000 + 149_730
+    a_valid_i = 1'b1; b_valid_i = 1'b1;
+    a_yumi_i = 1'b0; b_yumi_i = 1'b0;
+    
+    for (i = 0; i < max_clks; i++) begin
+        @(posedge clk_i);
+        if (a_valid_o) break;
+    end
+    if (timeout_o) begin
+        $display("\033[0;31mError!\033[0m: DUT timed out."); 
+        $finish();
+    end else if (error_o) begin
+        $display(
+            "\033[0;31mError!\033[0m: At i = %d, should be %d but got %b.",
+            i,
+            accum_o,
+            correct_o); 
+        $finish();
+    end
+    assert (a_valid_o) else $error("At time: %t, MAC should be valid!", $time);
+    #30;
+    assert (a_valid_o) else $error("At time: %t, MAC should be valid!", $time);
+    a_valid_i = 1'b0; b_valid_i = 1'b0;
     a_yumi_i = 1'b1; b_yumi_i = 1'b1; // consume
     #10;
-    a_yumi_i = 1'b0; b_yumi_i = 1'b0;
+    assert (!a_valid_o)
+        else $error("At time: %t, MAC should no longer be valid!", $time);
+    
     
     $finish(); // Probably didn't error.
 end
@@ -112,19 +141,19 @@ end
 final begin
       $display("Simulation time is %t", $time);
       if(error_o | timeout_o) begin
-         $display("\033[0;31m    ______                    \033[0m");
-         $display("\033[0;31m   / ____/_____________  _____\033[0m");
-         $display("\033[0;31m  / __/ / ___/ ___/ __ \\/ ___/\033[0m");
-         $display("\033[0;31m / /___/ /  / /  / /_/ / /    \033[0m");
-         $display("\033[0;31m/_____/_/  /_/   \\____/_/     \033[0m");
+         $display("    ______                    ");
+         $display("   / ____/_____________  _____");
+         $display("  / __/ / ___/ ___/ __ \\/ ___/");
+         $display(" / /___/ /  / /  / /_/ / /    ");
+         $display("/_____/_/  /_/   \\____/_/     ");
          $display();
          $display("Simulation Failed");
       end else begin
-         $display("\033[0;32m    ____  ___   __________\033[0m");
-         $display("\033[0;32m   / __ \\/   | / ___/ ___/\033[0m");
-         $display("\033[0;32m  / /_/ / /| | \\__ \\\__ \ \033[0m");
-         $display("\033[0;32m / ____/ ___ |___/ /__/ / \033[0m");
-         $display("\033[0;32m/_/   /_/  |_/____/____/  \033[0m");
+         $display("    ____  ___   __________");
+         $display("   / __ \\/   | / ___/ ___/");
+         $display("  / /_/ / /| | \\__ \\\__  ");
+         $display(" / ____/ ___ |___/ /__/ / ");
+         $display("/_/   /_/  |_/____/____/  ");
          $display();
          $display("Simulation Succeeded!");
       end // else: !if(error_unlock_o)
