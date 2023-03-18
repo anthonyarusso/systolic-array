@@ -1,8 +1,0 @@
-Vivado Simulator 2019.1
-Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/xelab.exe -wto a09e9696b79247ee8a5ee2d86a3d8ad2 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot mac_tb_behav xil_defaultlib.mac_tb xil_defaultlib.glbl -log elaborate.log 
-Using 2 slave threads.
-Starting static elaboration
-ERROR: [VRFC 10-2063] Module <bsg_scan> not found while processing module instance <scan0> [C:/Users/aarusso/Downloads/bsg_fpu_sticky.v:28]
-ERROR: [VRFC 10-2063] Module <bsg_priority_encode> not found while processing module instance <pe0> [C:/Users/aarusso/Downloads/bsg_fpu_clz.v:40]
-ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.
