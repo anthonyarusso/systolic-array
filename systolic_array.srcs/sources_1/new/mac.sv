@@ -22,36 +22,34 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module mac
-    #(
-    parameter width_p = 32
-    )
+    #(parameter width_p = 32)
     (
     input [0:0] clk_i
     ,input [0:0] reset_i
     ,input [0:0] en_i
     
     ,input [0:0] flush_i
-    ,output [width_p:0] accum_o
+    ,output [width_p-1:0] accum_o
     
     // Consumer interface A
     ,input [0:0] a_valid_i
     ,output [0:0] a_ready_o
-    ,input [width_p:0] a_i
+    ,input [width_p-1:0] a_i
     
     // Consumer interface B
     ,input [0:0] b_valid_i
     ,output [0:0] b_ready_o
-    ,input [width_p:0] b_i
+    ,input [width_p-1:0] b_i
     
     // Producer interface A
     ,output [0:0] a_valid_o
     ,input [0:0] a_yumi_i
-    ,output [width_p:0] a_o
+    ,output [width_p-1:0] a_o
     
     // Producer interface B
     ,output [0:0] b_valid_o
     ,input [0:0] b_yumi_i
-    ,output [width_p:0] b_o
+    ,output [width_p-1:0] b_o
     );
     
     typedef enum logic [3:0] {
@@ -62,7 +60,7 @@ module mac
     } state_e;
     
     state_e state_r, state_n;
-    logic [width_p:0] a_r, b_r, accum_r;
+    logic [width_p-1:0] a_r, b_r, accum_r, product_r;
     logic [0:0] all_consumers_rv_l,consumed_l;
     
     // Assign outputs
@@ -103,8 +101,6 @@ module mac
             b_r <= b_i;
         end
     end
-    
-    logic [width_p:0] product_r;
     
     always_ff @(posedge clk_i) begin
         if (reset_i) begin
