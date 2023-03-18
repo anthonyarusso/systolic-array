@@ -29,6 +29,7 @@ module mac
     ,input [0:0] en_i
     
     ,input [0:0] flush_i
+    ,output [0:0] flush_o
     ,output [width_p-1:0] accum_o
     
     // Consumer interface A

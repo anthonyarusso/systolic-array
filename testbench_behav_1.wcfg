@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="26395050fs"></ZoomStartTime>
-      <ZoomEndTime time="271395051fs"></ZoomEndTime>
-      <Cursor1Time time="145000000fs"></Cursor1Time>
+      <ZoomStartTime time="40833333fs"></ZoomStartTime>
+      <ZoomEndTime time="285833334fs"></ZoomEndTime>
+      <Cursor1Time time="245000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="148"></NameColumnWidth>
       <ValueColumnWidth column_width="176"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="26" />
+   <WVObjectSize size="24" />
    <wvobject fp_name="/testbench/clk_i" type="array">
       <obj_property name="ElementShortName">clk_i[0:0]</obj_property>
       <obj_property name="ObjectShortName">clk_i[0:0]</obj_property>
@@ -107,14 +107,6 @@
    <wvobject fp_name="/testbench/correct_o" type="array">
       <obj_property name="ElementShortName">correct_o[31:0]</obj_property>
       <obj_property name="ObjectShortName">correct_o[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/width_p" type="array">
-      <obj_property name="ElementShortName">width_p[31:0]</obj_property>
-      <obj_property name="ObjectShortName">width_p[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/max_clks" type="array">
-      <obj_property name="ElementShortName">max_clks[31:0]</obj_property>
-      <obj_property name="ObjectShortName">max_clks[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/dut/accum_r" type="array">
       <obj_property name="ElementShortName">accum_r[31:0]</obj_property>
