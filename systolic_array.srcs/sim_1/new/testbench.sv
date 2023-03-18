@@ -86,6 +86,7 @@ initial begin
     a_i = 32'd322; b_i = 32'd465;
     correct_o = 32'd149_730;
     a_valid_i = 1'b1; b_valid_i = 1'b1;
+    a_yumi_i = 1'b1; b_yumi_i = 1'b1; // will consume immediately
     
     for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
@@ -103,12 +104,10 @@ initial begin
         $finish();
     end
     a_valid_i = 1'b0; b_valid_i = 1'b0;
-    a_yumi_i = 1'b1; b_yumi_i = 1'b1; // consume
     #20;
     a_i = 32'd1_750; b_i = 32'd33_824;
     correct_o = 32'd59_341_730; // 59_192_000 + 149_730
     a_valid_i = 1'b1; b_valid_i = 1'b1;
-    a_yumi_i = 1'b0; b_yumi_i = 1'b0;
     
     for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
@@ -125,8 +124,6 @@ initial begin
             correct_o); 
         $finish();
     end
-    assert (a_valid_o) else $error("At time: %t, MAC should be valid!", $time);
-    #30;
     assert (a_valid_o) else $error("At time: %t, MAC should be valid!", $time);
     a_valid_i = 1'b0; b_valid_i = 1'b0;
     a_yumi_i = 1'b1; b_yumi_i = 1'b1; // consume
@@ -134,6 +131,25 @@ initial begin
     assert (!a_valid_o)
         else $error("At time: %t, MAC should no longer be valid!", $time);
     
+    /*
+    // Test that timeout logic is correct.
+    #10;
+    a_i = 32'd0; b_i = 32'd0;
+    correct_o = 32'd59_341_730; // 59_192_000 + 149_730 + 0
+    a_valid_i = 1'b1; b_valid_i = 1'b1;
+    
+    for (i = 0; i < 3; i++) begin
+        @(posedge clk_i);
+        if (a_valid_o) break;
+    end
+    if (i == 3) begin
+        $display(
+            "\033[0;31mError!\033[0m: DUT timed out.",
+            "[That means timeouts work! :) ]"
+            ); 
+        $finish();
+    end
+    */
     
     $finish(); // Probably didn't error.
 end

@@ -20,7 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module top();
+module top
+#(
+parameter width_p = 32
+,parameter array_width_p = 2
+,parameter array_height_p = 2
+)
+(
+);
 
 
 
