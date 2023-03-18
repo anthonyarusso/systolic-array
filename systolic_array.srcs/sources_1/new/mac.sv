@@ -68,6 +68,7 @@ module mac
     // Assign outputs
     assign a_o = a_r;
     assign b_o = b_r;
+    assign accum_o = accum_r;
     assign a_ready_o = (state_r == READY_S);
     assign b_ready_o = (state_r == READY_S);
     assign a_valid_o = (state_r == DONE_S);
@@ -120,5 +121,7 @@ module mac
             accum_r <= accum_r + product_r;
         end
     end
+    
+    // TODO: Complete the flush functionality.
     
 endmodule
