@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="40833333fs"></ZoomStartTime>
-      <ZoomEndTime time="285833334fs"></ZoomEndTime>
-      <Cursor1Time time="245000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="110000001fs"></ZoomEndTime>
+      <Cursor1Time time="102561000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="148"></NameColumnWidth>
-      <ValueColumnWidth column_width="176"></ValueColumnWidth>
+      <NameColumnWidth column_width="161"></NameColumnWidth>
+      <ValueColumnWidth column_width="192"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="24" />
+   <WVObjectSize size="8" />
    <wvobject fp_name="/testbench/clk_i" type="array">
       <obj_property name="ElementShortName">clk_i[0:0]</obj_property>
       <obj_property name="ObjectShortName">clk_i[0:0]</obj_property>
@@ -49,75 +49,11 @@
       <obj_property name="ObjectShortName">en_i[0:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/flush_i" type="array">
-      <obj_property name="ElementShortName">flush_i[0:0]</obj_property>
-      <obj_property name="ObjectShortName">flush_i[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/a_valid_i" type="array">
-      <obj_property name="ElementShortName">a_valid_i[0:0]</obj_property>
-      <obj_property name="ObjectShortName">a_valid_i[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/a_ready_o" type="array">
-      <obj_property name="ElementShortName">a_ready_o[0:0]</obj_property>
-      <obj_property name="ObjectShortName">a_ready_o[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/b_valid_i" type="array">
-      <obj_property name="ElementShortName">b_valid_i[0:0]</obj_property>
-      <obj_property name="ObjectShortName">b_valid_i[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/b_ready_o" type="array">
-      <obj_property name="ElementShortName">b_ready_o[0:0]</obj_property>
-      <obj_property name="ObjectShortName">b_ready_o[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/a_valid_o" type="array">
-      <obj_property name="ElementShortName">a_valid_o[0:0]</obj_property>
-      <obj_property name="ObjectShortName">a_valid_o[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/a_yumi_i" type="array">
-      <obj_property name="ElementShortName">a_yumi_i[0:0]</obj_property>
-      <obj_property name="ObjectShortName">a_yumi_i[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/b_valid_o" type="array">
-      <obj_property name="ElementShortName">b_valid_o[0:0]</obj_property>
-      <obj_property name="ObjectShortName">b_valid_o[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/b_yumi_i" type="array">
-      <obj_property name="ElementShortName">b_yumi_i[0:0]</obj_property>
-      <obj_property name="ObjectShortName">b_yumi_i[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/a_i" type="array">
-      <obj_property name="ElementShortName">a_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">a_i[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/b_i" type="array">
-      <obj_property name="ElementShortName">b_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">b_i[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/a_o" type="array">
-      <obj_property name="ElementShortName">a_o[31:0]</obj_property>
-      <obj_property name="ObjectShortName">a_o[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/b_o" type="array">
-      <obj_property name="ElementShortName">b_o[31:0]</obj_property>
-      <obj_property name="ObjectShortName">b_o[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/accum_o" type="array">
-      <obj_property name="ElementShortName">accum_o[31:0]</obj_property>
-      <obj_property name="ObjectShortName">accum_o[31:0]</obj_property>
+      <obj_property name="ElementShortName">flush_i[1:0]</obj_property>
+      <obj_property name="ObjectShortName">flush_i[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/correct_o" type="array">
-      <obj_property name="ElementShortName">correct_o[31:0]</obj_property>
-      <obj_property name="ObjectShortName">correct_o[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/accum_r" type="array">
-      <obj_property name="ElementShortName">accum_r[31:0]</obj_property>
-      <obj_property name="ObjectShortName">accum_r[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/product_r" type="array">
-      <obj_property name="ElementShortName">product_r[31:0]</obj_property>
-      <obj_property name="ObjectShortName">product_r[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/state_r" type="array">
-      <obj_property name="ElementShortName">state_r[3:0]</obj_property>
-      <obj_property name="ObjectShortName">state_r[3:0]</obj_property>
+      <obj_property name="ElementShortName">correct_o[127:0]</obj_property>
+      <obj_property name="ObjectShortName">correct_o[127:0]</obj_property>
    </wvobject>
 </wave_config>

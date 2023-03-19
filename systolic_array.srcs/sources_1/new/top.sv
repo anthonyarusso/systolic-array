@@ -45,7 +45,7 @@ parameter width_p = 32
 // Producer interface
 ,output [(width_p * array_width_p * array_height_p)-1:0] z_o
 ,output [(array_width_p * array_height_p)-1:0] z_valid_o
-,input [(array_width_p * array_height_p)-1:0] z_ready_i
+,input [(array_width_p * array_height_p)-1:0] z_yumi_i
 );
 
 // Data signals
@@ -80,17 +80,12 @@ end
 // Connect every MAC's accumulation register and accum_valids to the outputs.
 for (genvar i = 0; i < array_width_p; i++) begin
     for (genvar j = 0; j < array_height_p; j++) begin
-/*
-,output [(width_p * array_width_p * array_height_p)-1:0] z_o
-,output [(array_width_p * array_height_p)-1:0] z_valid_o
-,input [(array_width_p * array_height_p)-1:0] z_ready_i
-*/
         assign z_o[
-            (width_p*(i+1+j*array_width_p))-1 : 
-            (width_p*(i+j*array_width_p))
+            (width_p*(i+1+(j*array_width_p)))-1 : 
+            (width_p*(i+(j*array_width_p)))
             ] = z_w[i][j]; // flatten the accumulator array into one obnoxious bus.
         assign z_valid_o[i+(j*array_width_p)] = z_valids_w[i][j];
-        assign z_ready_i[i+(j*array_width_p)] = z_readys_w[i][j];
+        assign z_yumi_i[i+(j*array_width_p)] = z_readys_w[i][j];
     end
 end
 
