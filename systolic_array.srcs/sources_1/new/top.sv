@@ -81,8 +81,8 @@ for (genvar i = 0; i < array_height_p; i++) begin
 end
 
 // Connect every MAC's accumulation register and accum_valids to the outputs.
-for (genvar i = 0; i < array_width_p; i++) begin
-    for (genvar j = 0; j < array_height_p; j++) begin
+for (genvar i = 0; i < array_height_p; i++) begin
+    for (genvar j = 0; j < array_width_p ; j++) begin
         assign z_o[
             (width_p*(i+1+(j*array_width_p)))-1 : 
             (width_p*(i+(j*array_width_p)))
@@ -93,8 +93,8 @@ for (genvar i = 0; i < array_width_p; i++) begin
 end
 
 
-for (genvar i = 0; i < array_width_p; i++) begin
-    for (genvar j = 0; j < array_height_p; j++) begin
+for (genvar i = 0; i < array_height_p; i++) begin
+    for (genvar j = 0; j < array_width_p; j++) begin
          mac
          #(width_p)
          mac_inst

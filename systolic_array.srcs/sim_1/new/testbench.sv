@@ -42,9 +42,6 @@ rg
  (.clk_i(clk_i)
  ,.async_reset_o(reset_i));
  
- // wire [width_p-1:0] rows_w [array_width_p:0][array_height_p-1:0]; // one extra col
-// wire [width_p-1:0] cols_w [array_width_p-1:0][array_height_p:0]; // one extra row
- 
  // Matrix inputs
  logic [width_p-1:0] row_i [array_height_p-1:0];
  logic [width_p-1:0] col_i [array_width_p-1:0];
@@ -56,11 +53,34 @@ rg
  logic [(width_p*array_width_p)-1:0] flat_col_i;
  logic [array_width_p-1:0] col_valid_i, col_ready_o;
  // Outputs
- logic [width_p-1:0] correct_o [array_width_p-1:0][array_height_p-1:0];
+ logic [width_p-1:0] correct_o [array_height_p-1:0][array_width_p-1:0];
  logic [(width_p*array_width_p*array_height_p)-1:0] flat_z_o, flat_correct_o;
  logic [(array_width_p*array_height_p)-1:0] z_valid_o, z_yumi_i;
  // Control signals
  logic [0:0] en_i;
+
+// Flatten input arrays
+for (genvar j = 0; j < array_height_p; j++) begin
+    assign flat_row_i[(width_p*(j+1))-1:(width_p*j)] = row_i[j];
+end
+for (genvar j = 0; j < array_width_p; j++) begin
+    assign flat_col_i[(width_p*(j+1))-1:(width_p*j)] = col_i[j];
+end
+
+// Flatten output arrays
+for (genvar j = 0; j < array_height_p; j++) begin
+    for (genvar k = 0; k < array_width_p; k++) begin
+        // flatten the accumulator array into one obnoxious bus.
+        assign flat_correct_o[
+            (width_p*(j+1+(k*array_width_p)))-1 : 
+            (width_p*(j+(k*array_width_p)))
+            ] = correct_o[j][k];
+    end
+end
+ 
+ // assign error_o = z_valid_o & (flat_z_o != correct_o);
+ assign error_o = (flat_z_o != flat_correct_o);
+ assign timeout_o = (i == max_clks);
  
 top
 #(
@@ -83,27 +103,6 @@ dut
 ,.z_valid_o(z_valid_o)
 ,.z_yumi_i(z_yumi_i)
 );
-
-// Flatten input arrays
-for (genvar j = 0; j < array_width_p; j++) begin
-    assign flat_row_i[(width_p*(j+1))-1:(width_p*j)] = row_i[j][0];
-    assign flat_col_i[(width_p*(j+1))-1:(width_p*j)] = col_i[0][j];
-end
-
-// Flatten output arrays
-for (genvar j = 0; j < array_width_p; j++) begin
-    for (genvar k = 0; k < array_width_p; k++) begin
-        // flatten the accumulator array into one obnoxious bus.
-        assign flat_correct_o[
-            (width_p*(j+1+(k*array_width_p)))-1 : 
-            (width_p*(j+(k*array_width_p)))
-            ] = correct_o[j][k];
-    end
-end
- 
- // assign error_o = z_valid_o & (flat_z_o != correct_o);
- assign error_o = (flat_z_o != flat_correct_o);
- assign timeout_o = (i == max_clks);
 
 initial begin
     $display("Begin Test:");
