@@ -67,7 +67,7 @@ rg
  ,.b_o(b_o)
  );
  
- assign error_o = (accum_o != correct_o);
+ assign error_o = a_valid_o & (accum_o != correct_o);
  assign timeout_o = (i == max_clks);
 
 initial begin
@@ -93,11 +93,11 @@ initial begin
         if (a_valid_o) break;
     end
     if (timeout_o) begin
-        $display("\033[0;31mError!\033[0m: DUT timed out."); 
+        $display("Error! DUT timed out."); 
         $finish();
     end else if (error_o) begin
         $display(
-            "\033[0;31mError!\033[0m: At i = %d, should be %d but got %b.",
+            "Error! At i = %d, should be %d but got %d.",
             i,
             accum_o,
             correct_o); 
@@ -118,7 +118,7 @@ initial begin
         $finish();
     end else if (error_o) begin
         $display(
-            "\033[0;31mError!\033[0m: At i = %d, should be %d but got %b.",
+            "\033[0;31mError!\033[0m: At i = %d, should be %d but got %d.",
             i,
             accum_o,
             correct_o); 
