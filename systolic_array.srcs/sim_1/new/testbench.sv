@@ -90,7 +90,7 @@ initial begin
     i = 0;
     en_i = 1'b1;
     flush_i = '0;
-    row_i = '0; col_i = '0;
+    flat_row_i = '0; flat_col_i = '0;
     row_valid_i = '0; col_valid_i = '0;
     z_yumi_i = '0;
     #10;
