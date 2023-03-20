@@ -1,6 +1,10 @@
 # systolic-array
 SystemVerilog module that implements a systolic array (for matrix multiplication).
 
+## PYNQ Documentation
+
+DMA Tutorial: https://discuss.pynq.io/t/tutorial-pynq-dma-part-1-hardware-design/3133
+
 ## Further Reading
 
 ### Systolic Arrays
