@@ -140,7 +140,7 @@ initial begin
     @(negedge clk_i);
     row_i = {32'd0, 32'd45};
     col_i = {32'd0, 32'd22};
-    row_valid_i = '1; col_valid_i = '1;
+    row_valid_i = 2'b01; col_valid_i = 2'b01;
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
@@ -157,7 +157,7 @@ initial begin
     @(negedge clk_i);
     row_i = {32'd27, 32'd13};
     col_i = {32'd1, 32'd83};
-    row_valid_i = '1; col_valid_i = '1;
+    row_valid_i = 2'b11; col_valid_i = 2'b11;
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
@@ -174,11 +174,11 @@ initial begin
     @(negedge clk_i);
     row_i = {32'd6, 32'd0};
     col_i = {32'd9, 32'd0};
-    row_valid_i = '1; col_valid_i = '1;
+    row_valid_i = 2'b10; col_valid_i = 2'b10;
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
-    for (i = 0; i < 30; i++) begin
+    for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
         if (&z_valid_o) break;
