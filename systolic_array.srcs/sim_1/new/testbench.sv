@@ -26,7 +26,8 @@ localparam width_p = 32;
 localparam array_width_p = 2;
 localparam array_height_p = 2;
 localparam max_clks = 2 * 3 * array_width_p;
-logic [0:0] clk_i, reset_i, error_o, timeout_o;
+// logic [0:0] clk_i, reset_i, error_o, timeout_o;
+logic clk_i, reset_i, error_o, timeout_o; // [0:0] makes the waveform display as a bus which looks lame
 int i;
 
 nonsynth_clock_gen

@@ -136,6 +136,7 @@ module mac
     end
     
     // TODO: Complete the flush functionality.
-    assign accum_valid_o = (state_r == DONE_S | state_r == A_YUMI_S | state_r == B_YUMI_S);
+    // Maybe don't leave in the READY_S
+    assign accum_valid_o = (state_r == DONE_S | state_r == A_YUMI_S | state_r == B_YUMI_S | state_r == READY_S);
     
 endmodule
