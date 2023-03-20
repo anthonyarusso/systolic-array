@@ -30,6 +30,7 @@ parameter width_p = 32
 ,parameter addr_width_p = 32
 ,parameter array_width_p = 2
 ,parameter array_height_p = 2
+,parameter depth_p = 8 * array_width_p * array_height_p
 )
 (input [0:0] clk_i
 ,input [0:0] reset_i
@@ -44,6 +45,24 @@ parameter width_p = 32
 ,output [0:0] rd_valid_o
 ,input [0:0] rd_yumi_i
 ,output [width_p-1:0] rd_data_o
+);
+
+// If input FIFO's (wr_ptr - rd_ptr) >= (array_width_p * array_height_p)
+// then there is a matrix! Read the data and begin computation.
+
+// Input FIFO
+fifo
+#(.width_p(width_p)
+,.depth_p(depth_p))
+input_fifo_inst
+(.clk_i(clk_i)
+,.reset_i(reset_i)
+,.ready_o(wr_ready_o)
+,.valid_i(wr_valid_i)
+,.data_i(wr_data_i)
+,.yumi_i()
+,.valid_o()
+,.data_o()
 );
 
 systolic_array
@@ -66,6 +85,21 @@ systolic_array_inst
 ,.z_o()
 ,.z_valid_o()
 ,.z_yumi_i()
+);
+
+// Output FIFO
+fifo
+#(.width_p(width_p)
+,.depth_p(depth_p))
+output_fifo_inst
+(.clk_i(clk_i)
+,.reset_i(reset_i)
+,.ready_o()
+,.valid_i()
+,.data_i()
+,.yumi_i(rd_yumi_i)
+,.valid_o(rd_valid_o)
+,.data_o(rd_data_o)
 );
 
 endmodule
