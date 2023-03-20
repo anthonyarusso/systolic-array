@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1679305532">
+  <File Type="PA-TCL" Name="zynq_wrapper.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="zynq_wrapper_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="zynq_wrapper_reports.tcl"/>
+  <File Type="RDS-RDS" Name="zynq_wrapper.vds"/>
+  <File Type="RDS-UTIL" Name="zynq_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="zynq_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="zynq_wrapper.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="zynq_wrapper_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="zynq_wrapper_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/bd/zynq/zynq.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/zynq/hdl/zynq_wrapper.v">
+      <FileInfo>
+        <Attr Name="IsGlobalInclude" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/top.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/mac.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/systolic_array.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="zynq_wrapper"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="zynq_axi_dma_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="zynq_axi_smc_2"/>
+  <BlockFileSet Type="BlockSrcs" Name="zynq_axis_data_fifo_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="zynq_axi_smc_1_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="zynq_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="zynq_auto_pc_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="zynq_rst_ps7_0_100M_1"/>
+</GenRun>
