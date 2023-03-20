@@ -94,7 +94,7 @@ end
  assign error_o = (flat_z_o != flat_correct_o);
  assign timeout_o = (i == max_clks);
  
-top
+systolic_array
 #(
  .width_p(width_p)
  ,.array_width_p(array_width_p)
