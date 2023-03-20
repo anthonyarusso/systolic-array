@@ -55,6 +55,7 @@ rg
  logic [array_width_p-1:0] col_valid_i, col_ready_o;
  // Outputs
  logic [width_p-1:0] correct_o [array_height_p-1:0][array_width_p-1:0];
+ logic [width_p-1:0] z_o [array_height_p-1:0][array_width_p-1:0];
  logic [(width_p*array_width_p*array_height_p)-1:0] flat_z_o, flat_correct_o;
  logic [(array_width_p*array_height_p)-1:0] z_valid_o, z_yumi_i;
  // Control signals
@@ -76,6 +77,16 @@ for (genvar j = 0; j < array_height_p; j++) begin
             (width_p*(j+1+(k*array_width_p)))-1 : 
             (width_p*(j+(k*array_width_p)))
             ] = correct_o[j][k];
+    end
+end
+
+// Unpack flat_z_o into z_o for easier viewing.
+for (genvar j = 0; j < array_height_p; j++) begin
+    for (genvar k = 0; k < array_width_p; k++) begin
+        assign z_o[j][k] = flat_z_o [
+            (width_p*(j+1+(k*array_width_p)))-1 : 
+            (width_p*(j+(k*array_width_p)))
+        ];
     end
 end
  
@@ -167,7 +178,7 @@ initial begin
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
-    for (i = 0; i < max_clks; i++) begin
+    for (i = 0; i < 30; i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
         if (&z_valid_o) break;
