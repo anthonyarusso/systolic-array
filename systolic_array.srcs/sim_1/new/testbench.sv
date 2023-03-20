@@ -25,7 +25,7 @@ module testbench();
 localparam width_p = 32;
 localparam array_width_p = 2;
 localparam array_height_p = 2;
-localparam max_clks = 2 * 3 * array_width_p;
+localparam max_clks = 2 * array_width_p * array_height_p;
 // logic [0:0] clk_i, reset_i, error_o, timeout_o;
 logic clk_i, reset_i, error_o, timeout_o; // [0:0] makes the waveform display as a bus which looks lame
 int i;
@@ -127,10 +127,23 @@ initial begin
     // First two matrices:
     //  |13  45|     |83  9|
     //  |6   27| dot |22  1|
+    // Second matricies (tested separately):
+    //  |-37  44|     |83  99|
+    //  |10  960| dot |22  -1|
+    // Third matricies (again, separate):
+    //  | 70 -17 -43 |     | -7 43 -99 |     |-656  -2569  -4016|
+    //  |-58  -7  40 |     | 30 98 -93 |  =  |-124    460   5153|
+    //  | 61 -14  -5 | dot | -8 91 -31 |     |-807    796  -4582|
     flush_i = '0;
+    /*
     correct_o = {
          {32'd81, 32'd1092}
         ,{32'd162, 32'd2069}
+    };
+    */
+    correct_o = {
+         {32'd30, 32'd21950}
+        ,{-32'd3707, -32'd2103}
     };
     row_valid_i = '0; col_valid_i = '0;
     z_yumi_i = '0;
@@ -138,7 +151,9 @@ initial begin
     @(negedge reset_i);
     
     @(negedge clk_i);
-    row_i = {32'd0, 32'd45};
+//    row_i = {32'd0, 32'd45};
+//    col_i = {32'd0, 32'd22};
+    row_i = {32'd0, 32'd44};
     col_i = {32'd0, 32'd22};
     row_valid_i = 2'b01; col_valid_i = 2'b01;
     @(negedge clk_i);
@@ -155,8 +170,10 @@ initial begin
     end
     
     @(negedge clk_i);
-    row_i = {32'd27, 32'd13};
-    col_i = {32'd1, 32'd83};
+//    row_i = {32'd27, 32'd13};
+//    col_i = {32'd1, 32'd83};
+    row_i = {32'd960, -32'd37};
+    col_i = {-32'd1, 32'd83};
     row_valid_i = 2'b11; col_valid_i = 2'b11;
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
@@ -172,8 +189,10 @@ initial begin
     end
     
     @(negedge clk_i);
-    row_i = {32'd6, 32'd0};
-    col_i = {32'd9, 32'd0};
+//    row_i = {32'd6, 32'd0};
+//    col_i = {32'd9, 32'd0};
+    row_i = {32'd10, 32'd0};
+    col_i = {32'd99, 32'd0};
     row_valid_i = 2'b10; col_valid_i = 2'b10;
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
