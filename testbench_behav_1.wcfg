@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="44166666fs"></ZoomStartTime>
-      <ZoomEndTime time="309166667fs"></ZoomEndTime>
-      <Cursor1Time time="125000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="543929490fs"></ZoomEndTime>
+      <Cursor1Time time="30034000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="152"></NameColumnWidth>
-      <ValueColumnWidth column_width="127"></ValueColumnWidth>
+      <ValueColumnWidth column_width="123"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="29" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/testbench/clk_i" type="array">
       <obj_property name="ElementShortName">clk_i[0:0]</obj_property>
       <obj_property name="ObjectShortName">clk_i[0:0]</obj_property>
@@ -69,70 +69,6 @@
       <obj_property name="ElementShortName">flat_z_o[127:0]</obj_property>
       <obj_property name="ObjectShortName">flat_z_o[127:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[0].genblk1[0].mac_inst /a_valid_i" type="array">
-      <obj_property name="ElementShortName">a_valid_i[0:0]</obj_property>
-      <obj_property name="ObjectShortName">a_valid_i[0:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[0].genblk1[0].mac_inst /a_i" type="array">
-      <obj_property name="ElementShortName">a_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">a_i[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[0].genblk1[0].mac_inst /b_i" type="array">
-      <obj_property name="ElementShortName">b_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">b_i[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[0].genblk1[1].mac_inst /a_i" type="array">
-      <obj_property name="ElementShortName">a_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">a_i[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[0].genblk1[1].mac_inst /b_i" type="array">
-      <obj_property name="ElementShortName">b_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">b_i[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[1].genblk1[0].mac_inst /a_i" type="array">
-      <obj_property name="ElementShortName">a_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">a_i[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[1].genblk1[0].mac_inst /b_i" type="array">
-      <obj_property name="ElementShortName">b_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">b_i[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[1].genblk1[1].mac_inst /a_i" type="array">
-      <obj_property name="ElementShortName">a_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">a_i[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[1].genblk1[1].mac_inst /b_i" type="array">
-      <obj_property name="ElementShortName">b_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">b_i[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[0].genblk1[0].mac_inst /accum_r" type="array">
-      <obj_property name="ElementShortName">accum_r[31:0]</obj_property>
-      <obj_property name="ObjectShortName">accum_r[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[0].genblk1[1].mac_inst /accum_r" type="array">
-      <obj_property name="ElementShortName">accum_r[31:0]</obj_property>
-      <obj_property name="ObjectShortName">accum_r[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[1].genblk1[0].mac_inst /accum_r" type="array">
-      <obj_property name="ElementShortName">accum_r[31:0]</obj_property>
-      <obj_property name="ObjectShortName">accum_r[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/\genblk4[1].genblk1[1].mac_inst /accum_r" type="array">
-      <obj_property name="ElementShortName">accum_r[31:0]</obj_property>
-      <obj_property name="ObjectShortName">accum_r[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
    <wvobject fp_name="/testbench/row_i" type="array">
       <obj_property name="ElementShortName">row_i[1:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">row_i[1:0][31:0]</obj_property>
@@ -154,5 +90,9 @@
    <wvobject fp_name="/testbench/flat_col_i" type="array">
       <obj_property name="ElementShortName">flat_col_i[63:0]</obj_property>
       <obj_property name="ObjectShortName">flat_col_i[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider208">
+      <obj_property name="label">MACs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
    </wvobject>
 </wave_config>

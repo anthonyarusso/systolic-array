@@ -92,6 +92,14 @@ for (genvar i = 0; i < array_height_p; i++) begin
     end
 end
 
+// The yumi's along the bottom-right sides of the array need to be HIGH in order for
+// the array to continue conusming data.
+for (genvar i = 0; i < array_height_p; i++) begin
+    assign row_readys_w[i][array_width_p] = 1'b1;
+end
+for (genvar i = 0; i < array_width_p; i++) begin
+    assign col_readys_w[array_height_p][i] = 1'b1;
+end
 
 for (genvar i = 0; i < array_height_p; i++) begin
     for (genvar j = 0; j < array_width_p; j++) begin
@@ -113,10 +121,10 @@ for (genvar i = 0; i < array_height_p; i++) begin
          ,.b_i(cols_w[i][j])
          ,.a_valid_o(row_valids_w[i][j+1])
          ,.a_yumi_i(row_readys_w[i][j+1])
-         ,.a_o(rows_w[i][j+1]) // last column's a signals should be pruned by synthesis
+         ,.a_o(rows_w[i][j+1]) // last column's a_o signals should be pruned by synthesis
          ,.b_valid_o(col_valids_w[i+1][j])
          ,.b_yumi_i(col_readys_w[i+1][j])
-         ,.b_o(cols_w[i+1][j]) // last rows's b signals should be pruned by synthesis
+         ,.b_o(cols_w[i+1][j]) // last rows's b_o signals should be pruned by synthesis
          );
     end
 end
