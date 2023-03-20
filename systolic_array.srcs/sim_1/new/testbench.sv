@@ -117,8 +117,8 @@ initial begin
     //  |6   27| dot |22  1|
     flush_i = '0;
     correct_o = {
-         {32'd2069, 32'd162}
-        ,{32'd1092, 32'd81}
+         {32'd81, 32'd1092}
+        ,{32'd162, 32'd2069}
     };
     row_valid_i = '0; col_valid_i = '0;
     z_yumi_i = '0;
@@ -126,8 +126,8 @@ initial begin
     @(negedge reset_i);
     
     @(negedge clk_i);
-    row_i = {32'd45, 32'd0};
-    col_i = {32'd22, 32'd0};
+    row_i = {32'd0, 32'd45};
+    col_i = {32'd0, 32'd22};
     row_valid_i = '1; col_valid_i = '1;
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
@@ -143,8 +143,8 @@ initial begin
     end
     
     @(negedge clk_i);
-    row_i = {32'd13, 32'd27};
-    col_i = {32'd83, 32'd1};
+    row_i = {32'd27, 32'd13};
+    col_i = {32'd1, 32'd83};
     row_valid_i = '1; col_valid_i = '1;
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
@@ -160,8 +160,8 @@ initial begin
     end
     
     @(negedge clk_i);
-    row_i = {32'd0, 32'd6};
-    col_i = {32'd0, 32'd9};
+    row_i = {32'd6, 32'd0};
+    col_i = {32'd9, 32'd0};
     row_valid_i = '1; col_valid_i = '1;
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
