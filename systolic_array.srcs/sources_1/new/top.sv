@@ -112,7 +112,7 @@ for (genvar i = 0; i < array_height_p; i++) begin
          ,.flush_i(flushes_w[i][j])
          ,.flush_o(flushes_w[i][j+1])
          ,.accum_o(z_w[i][j])
-         ,.accum_valid_o()
+         ,.accum_valid_o(z_valids_w[i][j])
          ,.a_valid_i(row_valids_w[i][j])
          ,.a_ready_o(row_readys_w[i][j])
          ,.a_i(rows_w[i][j])

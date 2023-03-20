@@ -135,7 +135,7 @@ initial begin
     for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
-        if (&row_ready_o & &col_ready_o) break;
+        if (&z_valid_o) break;
     end
     if (timeout_o) begin
         $display("Error! DUT timed out."); 
@@ -152,7 +152,7 @@ initial begin
     for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
-        if (&row_ready_o & &col_ready_o) break;
+        if (&z_valid_o) break;
     end
     if (timeout_o) begin
         $display("Error! DUT timed out."); 
@@ -169,14 +169,14 @@ initial begin
     for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
-        if (&row_ready_o & &col_ready_o) break;
+        if (&z_valid_o) break;
     end
     if (timeout_o) begin
         $display("Error! DUT timed out."); 
         $finish();
     end else if (error_o) begin
         $display(
-            "Error! At i = %d, should be %d but got %d.",
+            "Error! At i = %d, should be %h but got %h.",
             i,
             flat_z_o,
             flat_correct_o); 
