@@ -28,9 +28,11 @@ module mac
     ,input [0:0] reset_i
     ,input [0:0] en_i
     
+    // Flush producer
     ,input [0:0] flush_i
     ,output [0:0] flush_o
     ,output [width_p-1:0] accum_o
+//    ,input [0:0] accum_yumi_i
     ,output[0:0] accum_valid_o
     
     // Consumer interface A
@@ -67,11 +69,14 @@ module mac
     
     state_e state_r, state_n;
     logic [width_p-1:0] a_r, b_r, accum_r, product_r;
+    logic [0:0] flush_r, reset_flush_r;
     
     // Assign outputs
     assign a_o = a_r;
     assign b_o = b_r;
     assign accum_o = accum_r;
+    assign accum_valid_o = flush_i;
+    assign flush_o = flush_r;
     assign a_ready_o = (state_r == READY_S | state_r == B_HELD_S);
     assign b_ready_o = (state_r == READY_S | state_r == A_HELD_S);
     assign a_valid_o = (state_r == DONE_S | state_r == B_YUMI_S);
@@ -104,6 +109,16 @@ module mac
     end
     
     always_ff @(posedge clk_i) begin
+        if (reset_i | reset_flush_r) begin
+            flush_r <= 1'b0;
+        end else if (flush_i) begin
+            flush_r <= 1'b1;
+        end
+    end
+    
+    always_ff @(posedge clk_i) reset_flush_r <= flush_r;
+    
+    always_ff @(posedge clk_i) begin
         if (reset_i) begin
             a_r <= '0;
         end else if (en_i & (state_r == READY_S | state_r == B_HELD_S)) begin
@@ -128,15 +143,11 @@ module mac
     end
     
     always_ff @(posedge clk_i) begin
-        if (reset_i) begin
+        if (reset_i | flush_r) begin
             accum_r <= '0;
         end else if (en_i & (state_r == ACCUM_S)) begin
             accum_r <= accum_r + product_r;
         end
     end
-    
-    // TODO: Complete the flush functionality.
-    // Maybe don't leave in the READY_S
-    assign accum_valid_o = (state_r == DONE_S | state_r == A_YUMI_S | state_r == B_YUMI_S);
-    
+
 endmodule
