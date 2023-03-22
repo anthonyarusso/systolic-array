@@ -1,0 +1,22 @@
+verilated_fst_c.o: \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_fst_c.cpp \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilatedos.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_config.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_types.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_funcs.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_fst_c.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_trace.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_trace_defs.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/fstapi.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/fastlz.c \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/fastlz.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/fastlz.c \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/fstapi.c \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/fst_config.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/fstapi.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/lz4.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/gtkwave/lz4.c \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_trace_imp.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_intrinsics.h \
+ /home/aarusso/oss-cad-suite/share/verilator/include/verilated_threads.h
