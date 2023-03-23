@@ -54,6 +54,16 @@ VL_INLINE_OPT void Vtestbench___024root___act_comb__TOP__0(Vtestbench___024root*
     SData/*11:0*/ __Vtableidx4;
     __Vtableidx4 = 0;
     // Body
+    vlSelf->testbench__DOT__dut__DOT__cols_w[0U][0U] 
+        = (IData)(vlSelf->testbench__DOT__flat_col_i);
+    vlSelf->testbench__DOT__dut__DOT__cols_w[0U][1U] 
+        = (IData)((vlSelf->testbench__DOT__flat_col_i 
+                   >> 0x20U));
+    vlSelf->testbench__DOT__dut__DOT__rows_w[0U][0U] 
+        = (IData)(vlSelf->testbench__DOT__flat_row_i);
+    vlSelf->testbench__DOT__dut__DOT__rows_w[1U][0U] 
+        = (IData)((vlSelf->testbench__DOT__flat_row_i 
+                   >> 0x20U));
     vlSelf->testbench__DOT__dut__DOT__z_readys_w[0U][0U] 
         = (1U & (IData)(vlSelf->testbench__DOT__z_yumi_i));
     vlSelf->testbench__DOT__dut__DOT__z_readys_w[0U][1U] 
@@ -567,6 +577,141 @@ VL_INLINE_OPT void Vtestbench___024root___nba_sequent__TOP__3(Vtestbench___024ro
                                            [0U][0U]);
 }
 
+VL_INLINE_OPT void Vtestbench___024root___nba_comb__TOP__0(Vtestbench___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vtestbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtestbench___024root___nba_comb__TOP__0\n"); );
+    // Init
+    SData/*11:0*/ __Vtableidx1;
+    __Vtableidx1 = 0;
+    SData/*11:0*/ __Vtableidx2;
+    __Vtableidx2 = 0;
+    SData/*11:0*/ __Vtableidx3;
+    __Vtableidx3 = 0;
+    SData/*11:0*/ __Vtableidx4;
+    __Vtableidx4 = 0;
+    // Body
+    vlSelf->testbench__DOT__dut__DOT__z_readys_w[0U][0U] 
+        = (1U & (IData)(vlSelf->testbench__DOT__z_yumi_i));
+    vlSelf->testbench__DOT__dut__DOT__z_readys_w[0U][1U] 
+        = (1U & ((IData)(vlSelf->testbench__DOT__z_yumi_i) 
+                 >> 2U));
+    vlSelf->testbench__DOT__dut__DOT__z_readys_w[1U][0U] 
+        = (1U & ((IData)(vlSelf->testbench__DOT__z_yumi_i) 
+                 >> 1U));
+    vlSelf->testbench__DOT__dut__DOT__z_readys_w[1U][1U] 
+        = (1U & ((IData)(vlSelf->testbench__DOT__z_yumi_i) 
+                 >> 3U));
+    vlSelf->testbench__DOT__dut__DOT__col_valids_w[0U][0U] 
+        = (1U & (IData)(vlSelf->testbench__DOT__col_valid_i));
+    vlSelf->testbench__DOT__dut__DOT__col_valids_w[0U][1U] 
+        = (1U & ((IData)(vlSelf->testbench__DOT__col_valid_i) 
+                 >> 1U));
+    vlSelf->testbench__DOT__dut__DOT__row_valids_w[0U][0U] 
+        = (1U & (IData)(vlSelf->testbench__DOT__row_valid_i));
+    vlSelf->testbench__DOT__dut__DOT__row_valids_w[1U][0U] 
+        = (1U & ((IData)(vlSelf->testbench__DOT__row_valid_i) 
+                 >> 1U));
+    vlSelf->testbench__DOT__dut__DOT__flushes_w[0U][0U] 
+        = (1U & (IData)(vlSelf->testbench__DOT__flush_i));
+    vlSelf->testbench__DOT__dut__DOT__flushes_w[1U][0U] 
+        = (1U & ((IData)(vlSelf->testbench__DOT__flush_i) 
+                 >> 1U));
+    vlSelf->testbench__DOT__dut__DOT__rows_w[0U][0U] 
+        = (IData)(vlSelf->testbench__DOT__flat_row_i);
+    vlSelf->testbench__DOT__dut__DOT__rows_w[1U][0U] 
+        = (IData)((vlSelf->testbench__DOT__flat_row_i 
+                   >> 0x20U));
+    vlSelf->testbench__DOT__dut__DOT__cols_w[0U][0U] 
+        = (IData)(vlSelf->testbench__DOT__flat_col_i);
+    vlSelf->testbench__DOT__dut__DOT__cols_w[0U][1U] 
+        = (IData)((vlSelf->testbench__DOT__flat_col_i 
+                   >> 0x20U));
+    __Vtableidx1 = ((vlSelf->testbench__DOT__dut__DOT__col_readys_w
+                     [1U][0U] << 0xbU) | ((vlSelf->testbench__DOT__dut__DOT__row_readys_w
+                                           [0U][1U] 
+                                           << 0xaU) 
+                                          | ((vlSelf->testbench__DOT__dut__DOT__col_valids_w
+                                              [0U][0U] 
+                                              << 9U) 
+                                             | ((vlSelf->testbench__DOT__dut__DOT__row_valids_w
+                                                 [0U]
+                                                 [0U] 
+                                                 << 8U) 
+                                                | (IData)(vlSelf->testbench__DOT__dut__DOT__genblk6__BRA__0__KET____DOT__genblk1__BRA__0__KET____DOT__mac_inst__DOT__state_r)))));
+    vlSelf->testbench__DOT__dut__DOT__genblk6__BRA__0__KET____DOT__genblk1__BRA__0__KET____DOT__mac_inst__DOT__state_n 
+        = Vtestbench__ConstPool__TABLE_he8c4175f_0[__Vtableidx1];
+    __Vtableidx2 = ((vlSelf->testbench__DOT__dut__DOT__col_readys_w
+                     [1U][1U] << 0xbU) | ((vlSelf->testbench__DOT__dut__DOT__row_readys_w
+                                           [0U][2U] 
+                                           << 0xaU) 
+                                          | ((vlSelf->testbench__DOT__dut__DOT__col_valids_w
+                                              [0U][1U] 
+                                              << 9U) 
+                                             | ((vlSelf->testbench__DOT__dut__DOT__row_valids_w
+                                                 [0U]
+                                                 [1U] 
+                                                 << 8U) 
+                                                | (IData)(vlSelf->testbench__DOT__dut__DOT__genblk6__BRA__0__KET____DOT__genblk1__BRA__1__KET____DOT__mac_inst__DOT__state_r)))));
+    vlSelf->testbench__DOT__dut__DOT__genblk6__BRA__0__KET____DOT__genblk1__BRA__1__KET____DOT__mac_inst__DOT__state_n 
+        = Vtestbench__ConstPool__TABLE_he8c4175f_0[__Vtableidx2];
+    __Vtableidx3 = ((vlSelf->testbench__DOT__dut__DOT__col_readys_w
+                     [2U][0U] << 0xbU) | ((vlSelf->testbench__DOT__dut__DOT__row_readys_w
+                                           [1U][1U] 
+                                           << 0xaU) 
+                                          | ((vlSelf->testbench__DOT__dut__DOT__col_valids_w
+                                              [1U][0U] 
+                                              << 9U) 
+                                             | ((vlSelf->testbench__DOT__dut__DOT__row_valids_w
+                                                 [1U]
+                                                 [0U] 
+                                                 << 8U) 
+                                                | (IData)(vlSelf->testbench__DOT__dut__DOT__genblk6__BRA__1__KET____DOT__genblk1__BRA__0__KET____DOT__mac_inst__DOT__state_r)))));
+    vlSelf->testbench__DOT__dut__DOT__genblk6__BRA__1__KET____DOT__genblk1__BRA__0__KET____DOT__mac_inst__DOT__state_n 
+        = Vtestbench__ConstPool__TABLE_he8c4175f_0[__Vtableidx3];
+    __Vtableidx4 = ((vlSelf->testbench__DOT__dut__DOT__col_readys_w
+                     [2U][1U] << 0xbU) | ((vlSelf->testbench__DOT__dut__DOT__row_readys_w
+                                           [1U][2U] 
+                                           << 0xaU) 
+                                          | ((vlSelf->testbench__DOT__dut__DOT__col_valids_w
+                                              [1U][1U] 
+                                              << 9U) 
+                                             | ((vlSelf->testbench__DOT__dut__DOT__row_valids_w
+                                                 [1U]
+                                                 [1U] 
+                                                 << 8U) 
+                                                | (IData)(vlSelf->testbench__DOT__dut__DOT__genblk6__BRA__1__KET____DOT__genblk1__BRA__1__KET____DOT__mac_inst__DOT__state_r)))));
+    vlSelf->testbench__DOT__dut__DOT__genblk6__BRA__1__KET____DOT__genblk1__BRA__1__KET____DOT__mac_inst__DOT__state_n 
+        = Vtestbench__ConstPool__TABLE_he8c4175f_0[__Vtableidx4];
+    vlSelf->testbench__DOT__dut__DOT__z_valids_w[0U][0U] 
+        = vlSelf->testbench__DOT__dut__DOT__flushes_w
+        [0U][0U];
+    vlSelf->testbench__DOT__dut__DOT__z_valids_w[0U][1U] 
+        = vlSelf->testbench__DOT__dut__DOT__flushes_w
+        [0U][1U];
+    vlSelf->testbench__DOT__dut__DOT__z_valids_w[1U][0U] 
+        = vlSelf->testbench__DOT__dut__DOT__flushes_w
+        [1U][0U];
+    vlSelf->testbench__DOT__dut__DOT__z_valids_w[1U][1U] 
+        = vlSelf->testbench__DOT__dut__DOT__flushes_w
+        [1U][1U];
+    vlSelf->testbench__DOT__z_valid_o = ((0xeU & (IData)(vlSelf->testbench__DOT__z_valid_o)) 
+                                         | vlSelf->testbench__DOT__dut__DOT__z_valids_w
+                                         [0U][0U]);
+    vlSelf->testbench__DOT__z_valid_o = ((9U & (IData)(vlSelf->testbench__DOT__z_valid_o)) 
+                                         | ((vlSelf->testbench__DOT__dut__DOT__z_valids_w
+                                             [0U][1U] 
+                                             << 2U) 
+                                            | (vlSelf->testbench__DOT__dut__DOT__z_valids_w
+                                               [1U]
+                                               [0U] 
+                                               << 1U)));
+    vlSelf->testbench__DOT__z_valid_o = ((7U & (IData)(vlSelf->testbench__DOT__z_valid_o)) 
+                                         | (vlSelf->testbench__DOT__dut__DOT__z_valids_w
+                                            [1U][1U] 
+                                            << 3U));
+}
+
 void Vtestbench___024root___eval_nba(Vtestbench___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtestbench__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -588,7 +733,7 @@ void Vtestbench___024root___eval_nba(Vtestbench___024root* vlSelf) {
     }
     if (((vlSelf->__VnbaTriggered.at(0U) | vlSelf->__VnbaTriggered.at(1U)) 
          | vlSelf->__VnbaTriggered.at(3U))) {
-        Vtestbench___024root___act_comb__TOP__0(vlSelf);
+        Vtestbench___024root___nba_comb__TOP__0(vlSelf);
         vlSelf->__Vm_traceActivity[6U] = 1U;
     }
 }

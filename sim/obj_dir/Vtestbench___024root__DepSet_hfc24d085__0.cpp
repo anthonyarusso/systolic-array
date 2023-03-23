@@ -28,6 +28,20 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     vlSelf->testbench__DOT__row_i[0U] = 0U;
     vlSelf->testbench__DOT__col_i[1U] = 0U;
     vlSelf->testbench__DOT__col_i[0U] = 0U;
+    vlSelf->testbench__DOT__flat_row_i = (((QData)((IData)(
+                                                           vlSelf->testbench__DOT__row_i
+                                                           [1U])) 
+                                           << 0x20U) 
+                                          | (QData)((IData)(
+                                                            vlSelf->testbench__DOT__row_i
+                                                            [0U])));
+    vlSelf->testbench__DOT__flat_col_i = (((QData)((IData)(
+                                                           vlSelf->testbench__DOT__col_i
+                                                           [1U])) 
+                                           << 0x20U) 
+                                          | (QData)((IData)(
+                                                            vlSelf->testbench__DOT__col_i
+                                                            [0U])));
     vlSelf->testbench__DOT__flush_i = 0U;
     vlSelf->testbench__DOT__correct_o[1U][1U] = 0x1eU;
     vlSelf->testbench__DOT__correct_o[1U][0U] = 0x55beU;
@@ -45,18 +59,32 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hec42002a__0.trigger(
                                                        "@(negedge testbench.reset_i)", 
                                                        "testbench.sv", 
-                                                       178);
+                                                       180);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     co_await vlSelf->__VtrigSched_hebc0aa59__0.trigger(
                                                        "@(negedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       180);
+                                                       182);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     VL_WRITEF("verilator 2\n");
     vlSelf->testbench__DOT__row_i[1U] = 0U;
     vlSelf->testbench__DOT__row_i[0U] = 0x2cU;
     vlSelf->testbench__DOT__col_i[1U] = 0U;
     vlSelf->testbench__DOT__col_i[0U] = 0x16U;
+    vlSelf->testbench__DOT__flat_row_i = (((QData)((IData)(
+                                                           vlSelf->testbench__DOT__row_i
+                                                           [1U])) 
+                                           << 0x20U) 
+                                          | (QData)((IData)(
+                                                            vlSelf->testbench__DOT__row_i
+                                                            [0U])));
+    vlSelf->testbench__DOT__flat_col_i = (((QData)((IData)(
+                                                           vlSelf->testbench__DOT__col_i
+                                                           [1U])) 
+                                           << 0x20U) 
+                                          | (QData)((IData)(
+                                                            vlSelf->testbench__DOT__col_i
+                                                            [0U])));
     VL_WRITEF("row_i: {%x, %x}\nflat_row_i: %x\n",32,
               vlSelf->testbench__DOT__row_i[1U],32,
               vlSelf->testbench__DOT__row_i[0U],64,
@@ -66,14 +94,14 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aa59__0.trigger(
                                                        "@(negedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       195);
+                                                       199);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__row_valid_i = 0U;
     vlSelf->testbench__DOT__col_valid_i = 0U;
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       199);
+                                                       203);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 1U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -82,7 +110,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       199);
+                                                       203);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 2U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -91,7 +119,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       199);
+                                                       203);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 3U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -100,7 +128,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       199);
+                                                       203);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 4U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -109,7 +137,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       199);
+                                                       203);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 5U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -118,7 +146,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       199);
+                                                       203);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 6U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -127,7 +155,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       199);
+                                                       203);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 7U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -136,7 +164,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       199);
+                                                       203);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 8U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -144,31 +172,45 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     }
     if (VL_UNLIKELY(vlSelf->testbench__DOT__timeout_o)) {
         VL_WRITEF("Error! DUT timed out.\n");
-        VL_FINISH_MT("testbench.sv", 206, "");
+        VL_FINISH_MT("testbench.sv", 210, "");
     }
     co_await vlSelf->__VtrigSched_hebc0aa59__0.trigger(
                                                        "@(negedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       209);
+                                                       213);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     VL_WRITEF("verilator 3\n");
     vlSelf->testbench__DOT__row_i[1U] = 0x3c0U;
     vlSelf->testbench__DOT__row_i[0U] = 0xffffffdbU;
     vlSelf->testbench__DOT__col_i[1U] = 0xffffffffU;
     vlSelf->testbench__DOT__col_i[0U] = 0x53U;
+    vlSelf->testbench__DOT__flat_row_i = (((QData)((IData)(
+                                                           vlSelf->testbench__DOT__row_i
+                                                           [1U])) 
+                                           << 0x20U) 
+                                          | (QData)((IData)(
+                                                            vlSelf->testbench__DOT__row_i
+                                                            [0U])));
+    vlSelf->testbench__DOT__flat_col_i = (((QData)((IData)(
+                                                           vlSelf->testbench__DOT__col_i
+                                                           [1U])) 
+                                           << 0x20U) 
+                                          | (QData)((IData)(
+                                                            vlSelf->testbench__DOT__col_i
+                                                            [0U])));
     vlSelf->testbench__DOT__row_valid_i = 3U;
     vlSelf->testbench__DOT__col_valid_i = 3U;
     co_await vlSelf->__VtrigSched_hebc0aa59__0.trigger(
                                                        "@(negedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       221);
+                                                       227);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__row_valid_i = 0U;
     vlSelf->testbench__DOT__col_valid_i = 0U;
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       225);
+                                                       231);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 1U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -177,7 +219,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       225);
+                                                       231);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 2U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -186,7 +228,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       225);
+                                                       231);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 3U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -195,7 +237,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       225);
+                                                       231);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 4U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -204,7 +246,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       225);
+                                                       231);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 5U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -213,7 +255,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       225);
+                                                       231);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 6U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -222,7 +264,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       225);
+                                                       231);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 7U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -231,7 +273,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       225);
+                                                       231);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 8U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -239,31 +281,45 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     }
     if (VL_UNLIKELY(vlSelf->testbench__DOT__timeout_o)) {
         VL_WRITEF("Error! DUT timed out.\n");
-        VL_FINISH_MT("testbench.sv", 232, "");
+        VL_FINISH_MT("testbench.sv", 238, "");
     }
     co_await vlSelf->__VtrigSched_hebc0aa59__0.trigger(
                                                        "@(negedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       235);
+                                                       241);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     VL_WRITEF("verilator 4\n");
     vlSelf->testbench__DOT__row_i[1U] = 0xaU;
     vlSelf->testbench__DOT__row_i[0U] = 0U;
     vlSelf->testbench__DOT__col_i[1U] = 0x63U;
     vlSelf->testbench__DOT__col_i[0U] = 0U;
+    vlSelf->testbench__DOT__flat_row_i = (((QData)((IData)(
+                                                           vlSelf->testbench__DOT__row_i
+                                                           [1U])) 
+                                           << 0x20U) 
+                                          | (QData)((IData)(
+                                                            vlSelf->testbench__DOT__row_i
+                                                            [0U])));
+    vlSelf->testbench__DOT__flat_col_i = (((QData)((IData)(
+                                                           vlSelf->testbench__DOT__col_i
+                                                           [1U])) 
+                                           << 0x20U) 
+                                          | (QData)((IData)(
+                                                            vlSelf->testbench__DOT__col_i
+                                                            [0U])));
     vlSelf->testbench__DOT__row_valid_i = 2U;
     vlSelf->testbench__DOT__col_valid_i = 2U;
     co_await vlSelf->__VtrigSched_hebc0aa59__0.trigger(
                                                        "@(negedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       247);
+                                                       255);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__row_valid_i = 0U;
     vlSelf->testbench__DOT__col_valid_i = 0U;
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       251);
+                                                       259);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 1U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -272,7 +328,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       251);
+                                                       259);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 2U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -281,7 +337,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       251);
+                                                       259);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 3U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -290,7 +346,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       251);
+                                                       259);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 4U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -299,7 +355,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       251);
+                                                       259);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 5U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -308,7 +364,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       251);
+                                                       259);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 6U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -317,7 +373,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       251);
+                                                       259);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->testbench__DOT__i = 7U;
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
@@ -326,7 +382,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     co_await vlSelf->__VtrigSched_hebc0aaa0__0.trigger(
                                                        "@(posedge testbench.clk_i)", 
                                                        "testbench.sv", 
-                                                       251);
+                                                       259);
     if ((0xfU == (IData)(vlSelf->testbench__DOT__z_valid_o))) {
         vlSelf->testbench__DOT__timeout_o = 0U;
     }
@@ -334,7 +390,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
     vlSelf->testbench__DOT__i = 8U;
     if (VL_UNLIKELY(vlSelf->testbench__DOT__timeout_o)) {
         VL_WRITEF("Error! DUT timed out.\n");
-        VL_FINISH_MT("testbench.sv", 258, "");
+        VL_FINISH_MT("testbench.sv", 266, "");
     } else if (VL_UNLIKELY((0U != ((((vlSelf->testbench__DOT__flat_z_o[0U] 
                                       ^ vlSelf->testbench__DOT__flat_correct_o[0U]) 
                                      | (vlSelf->testbench__DOT__flat_z_o[1U] 
@@ -347,7 +403,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
                   32,vlSelf->testbench__DOT__i,128,
                   vlSelf->testbench__DOT__flat_correct_o.data(),
                   128,vlSelf->testbench__DOT__flat_z_o.data());
-        VL_FINISH_MT("testbench.sv", 265, "");
+        VL_FINISH_MT("testbench.sv", 273, "");
     }
     if (VL_UNLIKELY((0U == ((((vlSelf->testbench__DOT__flat_z_o[0U] 
                                ^ vlSelf->testbench__DOT__flat_correct_o[0U]) 
@@ -357,7 +413,7 @@ VL_INLINE_OPT VlCoroutine Vtestbench___024root___eval_initial__TOP__0(Vtestbench
                                 ^ vlSelf->testbench__DOT__flat_correct_o[2U])) 
                             | (vlSelf->testbench__DOT__flat_z_o[3U] 
                                ^ vlSelf->testbench__DOT__flat_correct_o[3U]))))) {
-        VL_FINISH_MT("testbench.sv", 268, "");
+        VL_FINISH_MT("testbench.sv", 276, "");
     }
     vlSelf->__Vm_traceActivity[2U] = 1U;
 }

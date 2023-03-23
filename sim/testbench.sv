@@ -42,8 +42,6 @@ rg
  logic [0:0] en_i;
 
 // Flatten input arrays
-
-// MOVE THESE INTO ALWAYS_COMB BLOCKS
 for (genvar j = 0; j < array_height_p; j++) begin
     assign flat_row_i[(width_p*(j+1))-1:(width_p*j)] = row_i[j];
 end
@@ -125,6 +123,8 @@ initial begin
         $display("verilator 1");
         row_i = {32'd0, 32'd0};
         col_i = {32'd0, 32'd0};
+        flat_row_i = {row_i[1], row_i[0]};
+        flat_col_i = {col_i[1], col_i[0]};
     `else
         $readmemh("./hex/zeros.hex", row_i, 1, 0);
         $readmemh("./hex/zeros.hex", col_i, 1, 0);
@@ -186,6 +186,8 @@ initial begin
         $display("verilator 2");
         row_i = {32'd0, 32'd44};
         col_i = {32'd0, 32'd22};
+        flat_row_i = {row_i[1], row_i[0]};
+        flat_col_i = {col_i[1], col_i[0]};
         // flat_row_i = {row_i[1], row_i[0]};
         $display("row_i: {%h, %h}", row_i[1], row_i[0]);
         $display("flat_row_i: %h", flat_row_i);
@@ -215,6 +217,8 @@ initial begin
         $display("verilator 3");
         row_i = {32'd960, -32'd37};
         col_i = {-32'd1, 32'd83};
+        flat_row_i = {row_i[1], row_i[0]};
+        flat_col_i = {col_i[1], col_i[0]};
     `else
         $readmemh("./hex/row1.hex", row_i, 1, 0);
         $readmemh("./hex/col1.hex", col_i, 1, 0);
@@ -241,6 +245,8 @@ initial begin
         $display("verilator 4");
         row_i = {32'd10, 32'd0};
         col_i = {32'd99, 32'd0};
+        flat_row_i = {row_i[1], row_i[0]};
+        flat_col_i = {col_i[1], col_i[0]};
     `else
         $readmemh("./hex/row2.hex", row_i, 1, 0);
         $readmemh("./hex/col2.hex", col_i, 1, 0);
