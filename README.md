@@ -2,7 +2,8 @@
 SystemVerilog module that implements a systolic array (for matrix multiplication).
 
 ## Repository Structure
-```
+```bash
+
 ```
 
 ## Instructions for Setup
@@ -15,13 +16,13 @@ SystemVerilog module that implements a systolic array (for matrix multiplication
   
 ## Instructions for Simulation
 Run the following commands to simulate the design using `iverilog` and/or `verilator`:
-```
+```bash
 cd systolic-array/sim
 make iverilog  # For iverilog only
 make verilator # For verilator only
 make all       # For both
+```
 
 * * *
 
 Credit to [erendn](https://github.com/erendn/sobel-pipeline-fpga/blob/main/README.md) for the README.md template.
-```
