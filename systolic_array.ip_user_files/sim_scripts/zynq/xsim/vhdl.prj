@@ -1,7 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../bd/zynq/ip/zynq_axi_dma_0_0/sim/zynq_axi_dma_0_0.vhd" \
-"../../../bd/zynq/ip/zynq_rst_ps7_0_100M_1/sim/zynq_rst_ps7_0_100M_1.vhd" \
-"../../../bd/zynq/ip/zynq_axi_smc_2/bd_0/ip/ip_1/sim/bd_bd2a_psr_aclk_0.vhd" \
-"../../../bd/zynq/ip/zynq_axi_smc_1_1/bd_0/ip/ip_1/sim/bd_35d7_psr_aclk_0.vhd" \
-
-nosort
