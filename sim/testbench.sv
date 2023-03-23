@@ -115,6 +115,8 @@ initial begin
     $display("Begin Test:");
     $display();
     i = 0;
+    timeout_o = 1'b1;
+    flush_i = '0;
     en_i = 1'b1;
     // iverilog does not yet support array assignment
     // row_i = {32'd0, 32'd0};
@@ -153,7 +155,6 @@ initial begin
     //  | 70 -17 -43 |     | -7 43 -99 |     |-656  -2569  -4016|
     //  |-58  -7  40 |     | 30 98 -93 |  =  |-124    460   5153|
     //  | 61 -14  -5 | dot | -8 91 -31 |     |-807    796  -4582|
-    flush_i = '0;
     /*
     correct_o = {
          {32'd81, 32'd1092}
@@ -199,11 +200,12 @@ initial begin
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
+    timeout_o = 1'b1;
     for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
         // if (&z_valid_o) break; BREAK not supported by iverilog
-        if (&z_valid_o) timeout_o = 1'b0;
+        if (&row_ready_o & &col_ready_o) timeout_o = 1'b0;
     end
     if (timeout_o) begin
         $display("Error! DUT timed out."); 
@@ -227,11 +229,12 @@ initial begin
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
+    timeout_o = 1'b1;
     for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
         // if (&z_valid_o) break; BREAK not supported by iverilog
-        if (&z_valid_o) timeout_o = 1'b0;
+        if (&row_ready_o & &col_ready_o) timeout_o = 1'b0;
     end
     if (timeout_o) begin
         $display("Error! DUT timed out."); 
@@ -255,11 +258,12 @@ initial begin
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
+    timeout_o = 1'b1;
     for (i = 0; i < max_clks; i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
         // if (&z_valid_o) break; BREAK not supported by iverilog
-        if (&z_valid_o) timeout_o = 1'b0;
+        if (&row_ready_o & &col_ready_o) timeout_o = 1'b0;
     end
     if (timeout_o) begin
         $display("Error! DUT timed out."); 
