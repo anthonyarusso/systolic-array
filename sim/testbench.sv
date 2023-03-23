@@ -24,8 +24,8 @@ rg
  ,.async_reset_o(reset_i));
  
  // Matrix inputs
- logic signed [width_p-1:0] row_i [array_height_p-1:0];
- logic signed [width_p-1:0] col_i [array_width_p-1:0];
+ logic [width_p-1:0] row_i [array_height_p-1:0];
+ logic [width_p-1:0] col_i [array_width_p-1:0];
  
  // Row inputs
  logic [(width_p*array_height_p)-1:0] flat_row_i;
@@ -42,6 +42,8 @@ rg
  logic [0:0] en_i;
 
 // Flatten input arrays
+
+// MOVE THESE INTO ALWAYS_COMB BLOCKS
 for (genvar j = 0; j < array_height_p; j++) begin
     assign flat_row_i[(width_p*(j+1))-1:(width_p*j)] = row_i[j];
 end
@@ -70,8 +72,8 @@ for (genvar j = 0; j < array_height_p; j++) begin
     end
 end
  
- // assign error_o = z_valid_o & (flat_z_o != correct_o);
- assign error_o = (flat_z_o != flat_correct_o);
+ // assign error_o = z_valid_o & (flat_z_o !== correct_o);
+ assign error_o = (flat_z_o !== flat_correct_o);
  // assign timeout_o = (i == max_clks);
  
 systolic_array
@@ -103,6 +105,14 @@ initial begin
         $dumpfile("iverilog.vcd");
     `endif
         $dumpvars;
+
+    // iverilog does not dump memory arrays by default.
+    `ifdef IVERILOG
+        for (int idx = 0; idx < array_width_p; idx++)
+            $dumpvars(0, col_i[idx]);
+        for (int idx = 0; idx < array_height_p; idx++)
+            $dumpvars(0, row_i[idx]);
+    `endif
 
     $display("Begin Test:");
     $display();
@@ -176,6 +186,9 @@ initial begin
         $display("verilator 2");
         row_i = {32'd0, 32'd44};
         col_i = {32'd0, 32'd22};
+        // flat_row_i = {row_i[1], row_i[0]};
+        $display("row_i: {%h, %h}", row_i[1], row_i[0]);
+        $display("flat_row_i: %h", flat_row_i);
     `else
         $readmemh("./hex/row0.hex", row_i, 1, 0);
         $readmemh("./hex/col0.hex", col_i, 1, 0);

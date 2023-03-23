@@ -1,17 +1,18 @@
 TB_FILE=tb_file
 
-SOURCES += ../src/fifo.sv
+# SOURCES += ../src/fifo.sv
 SOURCES += ../src/mac.sv
 SOURCES += ../src/nonsynth_clock_gen.sv
 SOURCES += ../src/nonsynth_reset_gen.sv
-SOURCES += ../src/ram_1w1r_async.sv
+# SOURCES += ../src/ram_1w1r_async.sv
 SOURCES += ../src/systolic_array.sv
 # SOURCES += ../src/top.sv
 # SOURCES += ./mac_tb.sv
 SOURCES += ./testbench.sv
 
+# add -fst after "vvp ${TB_FILE}" to generate fst waveforms instead
 iverilog:
-	@iverilog -g2012 -o ${TB_FILE} ${SOURCES}
+	@iverilog -g2012 -D IVERILOG -o ${TB_FILE} ${SOURCES}
 	@vvp ${TB_FILE}
 .PHONY: iverilog
 
