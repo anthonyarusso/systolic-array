@@ -1,0 +1,5 @@
+*.fst
+*.vcd
+tb_file
+.DS_Store
+obj_dir/
