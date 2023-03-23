@@ -28,26 +28,26 @@ void Vtestbench___024root__trace_chg_sub_0(Vtestbench___024root* vlSelf, Verilat
     }
     if (VL_UNLIKELY((vlSelf->__Vm_traceActivity[1U] 
                      | vlSelf->__Vm_traceActivity[2U]))) {
-        bufp->chgIData(oldp+4,(vlSelf->testbench__DOT__i),32);
-        bufp->chgIData(oldp+5,(vlSelf->testbench__DOT__row_i[0]),32);
-        bufp->chgIData(oldp+6,(vlSelf->testbench__DOT__row_i[1]),32);
-        bufp->chgIData(oldp+7,(vlSelf->testbench__DOT__col_i[0]),32);
-        bufp->chgIData(oldp+8,(vlSelf->testbench__DOT__col_i[1]),32);
-        bufp->chgQData(oldp+9,(vlSelf->testbench__DOT__flat_row_i),64);
-        bufp->chgCData(oldp+11,(vlSelf->testbench__DOT__flush_i),2);
-        bufp->chgCData(oldp+12,(vlSelf->testbench__DOT__row_valid_i),2);
-        bufp->chgQData(oldp+13,(vlSelf->testbench__DOT__flat_col_i),64);
-        bufp->chgCData(oldp+15,(vlSelf->testbench__DOT__col_valid_i),2);
-        bufp->chgIData(oldp+16,(vlSelf->testbench__DOT__correct_o
-                                [0U][0U]),32);
+        bufp->chgBit(oldp+4,(vlSelf->testbench__DOT__en_i));
+        bufp->chgIData(oldp+5,(vlSelf->testbench__DOT__i),32);
+        bufp->chgIData(oldp+6,(vlSelf->testbench__DOT__row_i[0]),32);
+        bufp->chgIData(oldp+7,(vlSelf->testbench__DOT__row_i[1]),32);
+        bufp->chgIData(oldp+8,(vlSelf->testbench__DOT__col_i[0]),32);
+        bufp->chgIData(oldp+9,(vlSelf->testbench__DOT__col_i[1]),32);
+        bufp->chgQData(oldp+10,(vlSelf->testbench__DOT__flat_row_i),64);
+        bufp->chgCData(oldp+12,(vlSelf->testbench__DOT__flush_i),2);
+        bufp->chgCData(oldp+13,(vlSelf->testbench__DOT__row_valid_i),2);
+        bufp->chgQData(oldp+14,(vlSelf->testbench__DOT__flat_col_i),64);
+        bufp->chgCData(oldp+16,(vlSelf->testbench__DOT__col_valid_i),2);
         bufp->chgIData(oldp+17,(vlSelf->testbench__DOT__correct_o
-                                [0U][1U]),32);
+                                [0U][0U]),32);
         bufp->chgIData(oldp+18,(vlSelf->testbench__DOT__correct_o
-                                [1U][0U]),32);
+                                [0U][1U]),32);
         bufp->chgIData(oldp+19,(vlSelf->testbench__DOT__correct_o
+                                [1U][0U]),32);
+        bufp->chgIData(oldp+20,(vlSelf->testbench__DOT__correct_o
                                 [1U][1U]),32);
-        bufp->chgCData(oldp+20,(vlSelf->testbench__DOT__z_yumi_i),4);
-        bufp->chgBit(oldp+21,(vlSelf->testbench__DOT__en_i));
+        bufp->chgCData(oldp+21,(vlSelf->testbench__DOT__z_yumi_i),4);
     }
     if (VL_UNLIKELY((vlSelf->__Vm_traceActivity[1U] 
                      | vlSelf->__Vm_traceActivity[5U]))) {

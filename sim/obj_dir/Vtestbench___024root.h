@@ -18,6 +18,7 @@ class Vtestbench___024root final : public VerilatedModule {
     struct {
         CData/*0:0*/ testbench__DOT__clk_i;
         CData/*0:0*/ testbench__DOT__reset_i;
+        CData/*0:0*/ testbench__DOT__en_i;
         CData/*1:0*/ testbench__DOT__flush_i;
         CData/*1:0*/ testbench__DOT__row_valid_i;
         CData/*1:0*/ testbench__DOT__row_ready_o;
@@ -25,7 +26,6 @@ class Vtestbench___024root final : public VerilatedModule {
         CData/*1:0*/ testbench__DOT__col_ready_o;
         CData/*3:0*/ testbench__DOT__z_valid_o;
         CData/*3:0*/ testbench__DOT__z_yumi_i;
-        CData/*0:0*/ testbench__DOT__en_i;
         CData/*0:0*/ testbench__DOT__rg__DOT__ctr_lo_r;
         CData/*3:0*/ testbench__DOT__rg__DOT__ctr_hi_r;
         CData/*0:0*/ testbench__DOT__rg__DOT__phase_lo_r;

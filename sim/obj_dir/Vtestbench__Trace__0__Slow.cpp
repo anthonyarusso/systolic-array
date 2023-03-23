@@ -18,29 +18,30 @@ VL_ATTR_COLD void Vtestbench___024root__trace_init_sub__TOP__0(Vtestbench___024r
     tracep->declBus(c+173,"max_clks",-1, FST_VD_IMPLICIT,FST_VT_VCD_PARAMETER, false,-1, 31,0);
     tracep->declBit(c+170,"clk_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1);
     tracep->declBit(c+106,"reset_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1);
+    tracep->declBit(c+5,"en_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1);
     tracep->declBit(c+111,"error_o",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1);
-    tracep->declBus(c+5,"i",-1, FST_VD_IMPLICIT,FST_VT_SV_INT, false,-1, 31,0);
+    tracep->declBus(c+6,"i",-1, FST_VD_IMPLICIT,FST_VT_SV_INT, false,-1, 31,0);
     for (int i = 0; i < 2; ++i) {
-        tracep->declBus(c+6+i*1,"row_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, true,(i+0), 31,0);
+        tracep->declBus(c+7+i*1,"row_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, true,(i+0), 31,0);
     }
     for (int i = 0; i < 2; ++i) {
-        tracep->declBus(c+8+i*1,"col_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, true,(i+0), 31,0);
+        tracep->declBus(c+9+i*1,"col_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, true,(i+0), 31,0);
     }
-    tracep->declQuad(c+10,"flat_row_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 63,0);
-    tracep->declBus(c+12,"flush_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 1,0);
-    tracep->declBus(c+13,"row_valid_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 1,0);
+    tracep->declQuad(c+11,"flat_row_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 63,0);
+    tracep->declBus(c+13,"flush_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 1,0);
+    tracep->declBus(c+14,"row_valid_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 1,0);
     tracep->declBus(c+112,"row_ready_o",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 1,0);
-    tracep->declQuad(c+14,"flat_col_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 63,0);
-    tracep->declBus(c+16,"col_valid_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 1,0);
+    tracep->declQuad(c+15,"flat_col_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 63,0);
+    tracep->declBus(c+17,"col_valid_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 1,0);
     tracep->declBus(c+113,"col_ready_o",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 1,0);
     tracep->pushNamePrefix("correct_o");
     tracep->pushNamePrefix("[0]");
-    tracep->declBus(c+17,"[0]",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 31,0);
-    tracep->declBus(c+18,"[1]",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 31,0);
+    tracep->declBus(c+18,"[0]",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 31,0);
+    tracep->declBus(c+19,"[1]",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 31,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("[1]");
-    tracep->declBus(c+19,"[0]",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 31,0);
-    tracep->declBus(c+20,"[1]",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 31,0);
+    tracep->declBus(c+20,"[0]",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 31,0);
+    tracep->declBus(c+21,"[1]",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 31,0);
     tracep->popNamePrefix(1);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("z_o");
@@ -56,8 +57,7 @@ VL_ATTR_COLD void Vtestbench___024root__trace_init_sub__TOP__0(Vtestbench___024r
     tracep->declArray(c+118,"flat_z_o",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 127,0);
     tracep->declArray(c+1,"flat_correct_o",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 127,0);
     tracep->declBus(c+93,"z_valid_o",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 3,0);
-    tracep->declBus(c+21,"z_yumi_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 3,0);
-    tracep->declBus(c+22,"en_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 0,0);
+    tracep->declBus(c+22,"z_yumi_i",-1, FST_VD_IMPLICIT,FST_VT_SV_LOGIC, false,-1, 3,0);
     tracep->pushNamePrefix("cg ");
     tracep->declBus(c+174,"cycle_time_p",-1, FST_VD_IMPLICIT,FST_VT_VCD_PARAMETER, false,-1, 31,0);
     tracep->declBit(c+170,"clk_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1);
@@ -68,17 +68,17 @@ VL_ATTR_COLD void Vtestbench___024root__trace_init_sub__TOP__0(Vtestbench___024r
     tracep->declBus(c+172,"array_height_p",-1, FST_VD_IMPLICIT,FST_VT_VCD_PARAMETER, false,-1, 31,0);
     tracep->declBus(c+170,"clk_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+106,"reset_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
-    tracep->declBus(c+22,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
-    tracep->declBus(c+12,"flush_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 1,0);
-    tracep->declQuad(c+10,"row_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 63,0);
-    tracep->declBus(c+13,"row_valid_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 1,0);
+    tracep->declBus(c+5,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
+    tracep->declBus(c+13,"flush_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 1,0);
+    tracep->declQuad(c+11,"row_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 63,0);
+    tracep->declBus(c+14,"row_valid_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 1,0);
     tracep->declBus(c+112,"row_ready_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 1,0);
-    tracep->declQuad(c+14,"col_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 63,0);
-    tracep->declBus(c+16,"col_valid_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 1,0);
+    tracep->declQuad(c+15,"col_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 63,0);
+    tracep->declBus(c+17,"col_valid_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 1,0);
     tracep->declBus(c+113,"col_ready_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 1,0);
     tracep->declArray(c+118,"z_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 127,0);
     tracep->declBus(c+93,"z_valid_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 3,0);
-    tracep->declBus(c+21,"z_yumi_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 3,0);
+    tracep->declBus(c+22,"z_yumi_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 3,0);
     tracep->pushNamePrefix("rows_w");
     tracep->pushNamePrefix("[0]");
     tracep->declBus(c+43,"[0]",-1, FST_VD_IMPLICIT,FST_VT_VCD_WIRE, false,-1, 31,0);
@@ -225,7 +225,7 @@ VL_ATTR_COLD void Vtestbench___024root__trace_init_sub__TOP__0(Vtestbench___024r
     tracep->declBus(c+171,"width_p",-1, FST_VD_IMPLICIT,FST_VT_VCD_PARAMETER, false,-1, 31,0);
     tracep->declBus(c+170,"clk_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+106,"reset_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
-    tracep->declBus(c+22,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
+    tracep->declBus(c+5,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+73,"flush_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+126,"flush_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+127,"accum_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 31,0);
@@ -266,7 +266,7 @@ VL_ATTR_COLD void Vtestbench___024root__trace_init_sub__TOP__0(Vtestbench___024r
     tracep->declBus(c+171,"width_p",-1, FST_VD_IMPLICIT,FST_VT_VCD_PARAMETER, false,-1, 31,0);
     tracep->declBus(c+170,"clk_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+106,"reset_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
-    tracep->declBus(c+22,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
+    tracep->declBus(c+5,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+78,"flush_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+137,"flush_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+138,"accum_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 31,0);
@@ -300,7 +300,7 @@ VL_ATTR_COLD void Vtestbench___024root__trace_init_sub__TOP__0(Vtestbench___024r
     tracep->declBus(c+171,"width_p",-1, FST_VD_IMPLICIT,FST_VT_VCD_PARAMETER, false,-1, 31,0);
     tracep->declBus(c+170,"clk_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+106,"reset_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
-    tracep->declBus(c+22,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
+    tracep->declBus(c+5,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+83,"flush_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+148,"flush_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+149,"accum_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 31,0);
@@ -331,7 +331,7 @@ VL_ATTR_COLD void Vtestbench___024root__trace_init_sub__TOP__0(Vtestbench___024r
     tracep->declBus(c+171,"width_p",-1, FST_VD_IMPLICIT,FST_VT_VCD_PARAMETER, false,-1, 31,0);
     tracep->declBus(c+170,"clk_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+106,"reset_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
-    tracep->declBus(c+22,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
+    tracep->declBus(c+5,"en_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+88,"flush_i",-1,FST_VD_INPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+159,"flush_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 0,0);
     tracep->declBus(c+160,"accum_o",-1,FST_VD_OUTPUT,FST_VT_VCD_WIRE, false,-1, 31,0);
@@ -433,26 +433,26 @@ VL_ATTR_COLD void Vtestbench___024root__trace_full_sub_0(Vtestbench___024root* v
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode);
     // Body
     bufp->fullWData(oldp+1,(vlSelf->testbench__DOT__flat_correct_o),128);
-    bufp->fullIData(oldp+5,(vlSelf->testbench__DOT__i),32);
-    bufp->fullIData(oldp+6,(vlSelf->testbench__DOT__row_i[0]),32);
-    bufp->fullIData(oldp+7,(vlSelf->testbench__DOT__row_i[1]),32);
-    bufp->fullIData(oldp+8,(vlSelf->testbench__DOT__col_i[0]),32);
-    bufp->fullIData(oldp+9,(vlSelf->testbench__DOT__col_i[1]),32);
-    bufp->fullQData(oldp+10,(vlSelf->testbench__DOT__flat_row_i),64);
-    bufp->fullCData(oldp+12,(vlSelf->testbench__DOT__flush_i),2);
-    bufp->fullCData(oldp+13,(vlSelf->testbench__DOT__row_valid_i),2);
-    bufp->fullQData(oldp+14,(vlSelf->testbench__DOT__flat_col_i),64);
-    bufp->fullCData(oldp+16,(vlSelf->testbench__DOT__col_valid_i),2);
-    bufp->fullIData(oldp+17,(vlSelf->testbench__DOT__correct_o
-                             [0U][0U]),32);
+    bufp->fullBit(oldp+5,(vlSelf->testbench__DOT__en_i));
+    bufp->fullIData(oldp+6,(vlSelf->testbench__DOT__i),32);
+    bufp->fullIData(oldp+7,(vlSelf->testbench__DOT__row_i[0]),32);
+    bufp->fullIData(oldp+8,(vlSelf->testbench__DOT__row_i[1]),32);
+    bufp->fullIData(oldp+9,(vlSelf->testbench__DOT__col_i[0]),32);
+    bufp->fullIData(oldp+10,(vlSelf->testbench__DOT__col_i[1]),32);
+    bufp->fullQData(oldp+11,(vlSelf->testbench__DOT__flat_row_i),64);
+    bufp->fullCData(oldp+13,(vlSelf->testbench__DOT__flush_i),2);
+    bufp->fullCData(oldp+14,(vlSelf->testbench__DOT__row_valid_i),2);
+    bufp->fullQData(oldp+15,(vlSelf->testbench__DOT__flat_col_i),64);
+    bufp->fullCData(oldp+17,(vlSelf->testbench__DOT__col_valid_i),2);
     bufp->fullIData(oldp+18,(vlSelf->testbench__DOT__correct_o
-                             [0U][1U]),32);
+                             [0U][0U]),32);
     bufp->fullIData(oldp+19,(vlSelf->testbench__DOT__correct_o
-                             [1U][0U]),32);
+                             [0U][1U]),32);
     bufp->fullIData(oldp+20,(vlSelf->testbench__DOT__correct_o
+                             [1U][0U]),32);
+    bufp->fullIData(oldp+21,(vlSelf->testbench__DOT__correct_o
                              [1U][1U]),32);
-    bufp->fullCData(oldp+21,(vlSelf->testbench__DOT__z_yumi_i),4);
-    bufp->fullBit(oldp+22,(vlSelf->testbench__DOT__en_i));
+    bufp->fullCData(oldp+22,(vlSelf->testbench__DOT__z_yumi_i),4);
     bufp->fullBit(oldp+23,(vlSelf->testbench__DOT__dut__DOT__row_readys_w
                            [0U][0U]));
     bufp->fullBit(oldp+24,(vlSelf->testbench__DOT__dut__DOT__row_readys_w
