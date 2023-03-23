@@ -3,7 +3,33 @@ SystemVerilog module that implements a systolic array (for matrix multiplication
 
 ## Repository Structure
 ```bash
-
+├── basejump_stl
+├── LICENSE
+├── README.md
+├── sim
+│   ├── hex
+│   │   ├── col0.hex
+│   │   ├── col1.hex
+│   │   ├── col2.hex
+│   │   ├── correct_o.hex
+│   │   ├── correct_row0.hex
+│   │   ├── correct_row1.hex
+│   │   ├── matrices.hex
+│   │   ├── row0.hex
+│   │   ├── row1.hex
+│   │   ├── row2.hex
+│   │   └── zeros.hex
+│   ├── mac_tb.sv
+│   ├── Makefile
+│   └── testbench.sv
+└── src
+    ├── fifo.sv
+    ├── mac.sv
+    ├── nonsynth_clock_gen.sv
+    ├── nonsynth_reset_gen.sv
+    ├── ram_1w1r_async.sv
+    ├── systolic_array.sv
+    └── top.sv
 ```
 
 ## Instructions for Setup
