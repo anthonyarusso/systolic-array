@@ -1,23 +1,27 @@
 # systolic-array
 SystemVerilog module that implements a systolic array (for matrix multiplication).
 
-## PYNQ Documentation
+## Repository Structure
+```
+```
 
-DMA Tutorial: https://discuss.pynq.io/t/tutorial-pynq-dma-part-1-hardware-design/3133
+## Instructions for Setup
+1. Clone the repository.
+`git clone git@github.com:anthonyarusso/systolic-array.git`
 
-## Further Reading
+2. Install the following dependencies:
+  + [Python](https://www.python.org/) >= 3.6
+  + [Icarus Verilog](https://github.com/steveicarus/iverilog) and/or [Verilator](https://github.com/verilator/verilator)
+  
+## Instructions for Simulation
+Run the following commands to simulate the design using `iverilog` and/or `verilator`:
+```
+cd systolic-array/sim
+make iverilog  # For iverilog only
+make verilator # For verilator only
+make all       # For both
 
-### Systolic Arrays
-Google TPU Performance Analysis Paper: https://arxiv.org/ftp/arxiv/papers/1704/1704.04760.pdf
+* * *
 
-MIT Eyeriss: https://people.csail.mit.edu/emer/papers/2017.01.jssc.eyeriss_design.pdf
-
-### Hardware Design
-
-Basejump STL: https://github.com/bespoke-silicon-group/basejump_stl
-
-Basejump STL Getting Started: https://docs.google.com/document/d/1xA5XUzBtz_D6aSyIBQUwFk_kSUdckrfxa2uzGjMgmCU/edit#heading=h.wuakt9cc0y5m
-
-HardFloat: http://www.jhauser.us/arithmetic/HardFloat.html
-
-
+Credit to [erendn](https://github.com/erendn/sobel-pipeline-fpga/blob/main/README.md) for the README.md template.
+```
