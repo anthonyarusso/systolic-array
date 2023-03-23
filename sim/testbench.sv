@@ -6,11 +6,8 @@ localparam width_p = 32;
 localparam array_width_p = 2;
 localparam array_height_p = 2;
 localparam max_clks = 2 * array_width_p * array_height_p;
-// logic [0:0] clk_i, reset_i, error_o, timeout_o;
-logic clk_i, reset_i, error_o, timeout_o; // [0:0] makes the waveform display as a bus which looks lame
+logic clk_i, reset_i, error_o; // [0:0] makes the waveform display as a bus which looks lame
 int i;
-
-// Time outs are currentlly disabled.
 
 nonsynth_clock_gen
  #(.cycle_time_p(10))
@@ -74,7 +71,6 @@ end
  
  // assign error_o = z_valid_o & (flat_z_o !== correct_o);
  assign error_o = (flat_z_o !== flat_correct_o);
- // assign timeout_o = (i == max_clks);
  
 systolic_array
 #(
@@ -117,7 +113,6 @@ initial begin
     $display("Begin Test:");
     $display();
     i = 0;
-    timeout_o = 1'b1;
     flush_i = '0;
     en_i = 1'b1;
     // iverilog does not yet support array assignment
@@ -202,16 +197,10 @@ initial begin
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
-    timeout_o = 1'b1;
-    for (i = 0; (i < max_clks) /*&& timeout_o*/; i++) begin
+    for (i = 0; (i < max_clks); i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
         // if (&z_valid_o) break; BREAK not supported by iverilog
-        if (1'b1) timeout_o = 1'b0;
-    end
-    if (timeout_o) begin
-        $display("Error! DUT timed out."); 
-        $finish();
     end
     
     @(negedge clk_i);
@@ -231,16 +220,10 @@ initial begin
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
-    timeout_o = 1'b1;
-    for (i = 0; (i < max_clks) /*&& timeout_o*/; i++) begin
+    for (i = 0; (i < max_clks); i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
         // if (&z_valid_o) break; BREAK not supported by iverilog
-        if (1'b1) timeout_o = 1'b0;
-    end
-    if (timeout_o) begin
-        $display("Error! DUT timed out."); 
-        $finish();
     end
     
     @(negedge clk_i);
@@ -260,17 +243,12 @@ initial begin
     @(negedge clk_i);
     row_valid_i = '0; col_valid_i = '0;
     
-    timeout_o = 1'b1;
-    for (i = 0; (i < max_clks) /*&& timeout_o*/; i++) begin
+    for (i = 0; (i < max_clks); i++) begin
         @(posedge clk_i);
         // If all input MACs are ready within max_clks
         // if (&z_valid_o) break; BREAK not supported by iverilog
-        if (1'b1) timeout_o = 1'b0;
     end
-    if (timeout_o) begin
-        $display("Error! DUT timed out."); 
-        $finish();
-    end else if (error_o) begin
+    if (error_o) begin
         $display(
             "Error! At i = %d, should be %h but got %h.",
             i,
@@ -289,7 +267,7 @@ end
 
 final begin
       $display("Simulation time is %t", $time);
-      if(error_o | timeout_o) begin
+      if(error_o) begin
          $display("    ______                    ");
          $display("   / ____/_____________  _____");
          $display("  / __/ / ___/ ___/ __ \\/ ___/");

@@ -29,15 +29,14 @@ VL_ATTR_COLD void Vtestbench___024root___eval_final__TOP(Vtestbench___024root* v
     // Body
     VL_WRITEF("Simulation time is %t\n",64,VL_TIME_UNITED_Q(1000),
               -9);
-    if (((0U != ((((vlSelf->testbench__DOT__flat_z_o[0U] 
-                    ^ vlSelf->testbench__DOT__flat_correct_o[0U]) 
-                   | (vlSelf->testbench__DOT__flat_z_o[1U] 
-                      ^ vlSelf->testbench__DOT__flat_correct_o[1U])) 
-                  | (vlSelf->testbench__DOT__flat_z_o[2U] 
-                     ^ vlSelf->testbench__DOT__flat_correct_o[2U])) 
-                 | (vlSelf->testbench__DOT__flat_z_o[3U] 
-                    ^ vlSelf->testbench__DOT__flat_correct_o[3U]))) 
-         | (IData)(vlSelf->testbench__DOT__timeout_o))) {
+    if ((0U != ((((vlSelf->testbench__DOT__flat_z_o[0U] 
+                   ^ vlSelf->testbench__DOT__flat_correct_o[0U]) 
+                  | (vlSelf->testbench__DOT__flat_z_o[1U] 
+                     ^ vlSelf->testbench__DOT__flat_correct_o[1U])) 
+                 | (vlSelf->testbench__DOT__flat_z_o[2U] 
+                    ^ vlSelf->testbench__DOT__flat_correct_o[2U])) 
+                | (vlSelf->testbench__DOT__flat_z_o[3U] 
+                   ^ vlSelf->testbench__DOT__flat_correct_o[3U])))) {
         VL_WRITEF("    ______                    \n   / ____/_____________  _____\n  / __/ / ___/ ___/ __ \\/ ___/\n / /___/ /  / /  / /_/ / /    \n/_____/_/  /_/   \\____/_/     \n\nSimulation Failed\n");
     } else {
         VL_WRITEF("    ____  ___   __________\n   / __ \\/   | / ___/ ___/\n  / /_/ / /| | \\__ \\__  \n / ____/ ___ |___/ /__/ / \n/_/   /_/  |_/____/____/  \n\nSimulation Succeeded!\n");
@@ -466,7 +465,6 @@ VL_ATTR_COLD void Vtestbench___024root___ctor_var_reset(Vtestbench___024root* vl
     // Body
     vlSelf->testbench__DOT__clk_i = VL_RAND_RESET_I(1);
     vlSelf->testbench__DOT__reset_i = VL_RAND_RESET_I(1);
-    vlSelf->testbench__DOT__timeout_o = VL_RAND_RESET_I(1);
     vlSelf->testbench__DOT__i = 0;
     for (int __Vi0 = 0; __Vi0 < 2; ++__Vi0) {
         vlSelf->testbench__DOT__row_i[__Vi0] = VL_RAND_RESET_I(32);

@@ -18,7 +18,6 @@ class Vtestbench___024root final : public VerilatedModule {
     struct {
         CData/*0:0*/ testbench__DOT__clk_i;
         CData/*0:0*/ testbench__DOT__reset_i;
-        CData/*0:0*/ testbench__DOT__timeout_o;
         CData/*1:0*/ testbench__DOT__flush_i;
         CData/*1:0*/ testbench__DOT__row_valid_i;
         CData/*1:0*/ testbench__DOT__row_ready_o;
@@ -80,9 +79,9 @@ class Vtestbench___024root final : public VerilatedModule {
         VlUnpacked<VlUnpacked<IData/*31:0*/, 3>, 2> testbench__DOT__dut__DOT__rows_w;
         VlUnpacked<VlUnpacked<IData/*31:0*/, 2>, 3> testbench__DOT__dut__DOT__cols_w;
         VlUnpacked<VlUnpacked<IData/*31:0*/, 2>, 2> testbench__DOT__dut__DOT__z_w;
+        VlUnpacked<VlUnpacked<CData/*0:0*/, 3>, 2> testbench__DOT__dut__DOT__row_valids_w;
     };
     struct {
-        VlUnpacked<VlUnpacked<CData/*0:0*/, 3>, 2> testbench__DOT__dut__DOT__row_valids_w;
         VlUnpacked<VlUnpacked<CData/*0:0*/, 2>, 3> testbench__DOT__dut__DOT__col_valids_w;
         VlUnpacked<VlUnpacked<CData/*0:0*/, 2>, 2> testbench__DOT__dut__DOT__z_valids_w;
         VlUnpacked<VlUnpacked<CData/*0:0*/, 3>, 2> testbench__DOT__dut__DOT__row_readys_w;
