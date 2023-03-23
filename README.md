@@ -1,4 +1,6 @@
-# systolic-array
+# systolic-array -- VIVADO BACKUP BRANCH
+This branch exists to host all Vivado generated files as a backup. Please ignore
+its contents and follow the instructions on the main branch.
 SystemVerilog module that implements a systolic array (for matrix multiplication).
 
 ## PYNQ Documentation

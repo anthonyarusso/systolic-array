@@ -75,6 +75,7 @@ module mac
     assign a_o = a_r;
     assign b_o = b_r;
     assign accum_o = accum_r;
+    // TODO: complete flush functionality.
     assign accum_valid_o = flush_i;
     assign flush_o = flush_r;
     assign a_ready_o = (state_r == READY_S | state_r == B_HELD_S);
