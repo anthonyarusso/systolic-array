@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="189166666fs"></ZoomStartTime>
-      <ZoomEndTime time="237155133fs"></ZoomEndTime>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="385000001fs"></ZoomEndTime>
       <Cursor1Time time="380323000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="152"></NameColumnWidth>
-      <ValueColumnWidth column_width="250"></ValueColumnWidth>
+      <ValueColumnWidth column_width="246"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="40" />
+   <WVObjectSize size="39" />
    <wvobject fp_name="/testbench/clk_i" type="logic">
       <obj_property name="ElementShortName">clk_i</obj_property>
       <obj_property name="ObjectShortName">clk_i</obj_property>
@@ -32,18 +32,14 @@
       <obj_property name="ElementShortName">error_o</obj_property>
       <obj_property name="ObjectShortName">error_o</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/timeout_o" type="logic">
-      <obj_property name="ElementShortName">timeout_o</obj_property>
-      <obj_property name="ObjectShortName">timeout_o</obj_property>
-   </wvobject>
    <wvobject fp_name="/testbench/i" type="array">
       <obj_property name="ElementShortName">i[31:0]</obj_property>
       <obj_property name="ObjectShortName">i[31:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/en_i" type="array">
-      <obj_property name="ElementShortName">en_i[0:0]</obj_property>
-      <obj_property name="ObjectShortName">en_i[0:0]</obj_property>
+   <wvobject fp_name="/testbench/en_i" type="logic">
+      <obj_property name="ElementShortName">en_i</obj_property>
+      <obj_property name="ObjectShortName">en_i</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/flush_i" type="array">
       <obj_property name="ElementShortName">flush_i[1:0]</obj_property>
