@@ -127,14 +127,14 @@ initial begin
     i = 0;
     flush_i = '0;
     en_i = 1'b1;
-    `ifdef VERILATOR
-        row_i = {32'd0, 32'd0};
-        col_i = {32'd0, 32'd0};
-        flat_row_i = {row_i[1], row_i[0]};
-        flat_col_i = {col_i[1], col_i[0]};
-    `else
+    `ifdef IVERILOG
         $readmemh("./hex/zeros.hex", row_i, 1, 0);
         $readmemh("./hex/zeros.hex", col_i, 1, 0);
+    `else        
+        row_i = {32'd0, 32'd0};
+        col_i = {32'd0, 32'd0};
+        // flat_row_i = {row_i[1], row_i[0]};
+        // flat_col_i = {col_i[1], col_i[0]};
     `endif
 
     // Test matricies:
@@ -150,14 +150,14 @@ initial begin
     @(negedge reset_i);
     
     @(negedge clk_i);
-    `ifdef VERILATOR
-        row_i = {32'd0, 32'd44};
-        col_i = {32'd0, 32'd22};
-        flat_row_i = {row_i[1], row_i[0]};
-        flat_col_i = {col_i[1], col_i[0]};
-    `else
+    `ifdef IVERILOG
         $readmemh("./hex/row0.hex", row_i, 1, 0);
         $readmemh("./hex/col0.hex", col_i, 1, 0);
+    `else
+        row_i = {32'd0, 32'd44};
+        col_i = {32'd0, 32'd22};
+        // flat_row_i = {row_i[1], row_i[0]};
+        // flat_col_i = {col_i[1], col_i[0]};
     `endif
     row_valid_i = 2'b01; col_valid_i = 2'b01;
     @(negedge clk_i);
@@ -168,14 +168,14 @@ initial begin
     end
     
     @(negedge clk_i);
-    `ifdef VERILATOR
-        row_i = {32'd960, -32'd37};
-        col_i = {-32'd1, 32'd83};
-        flat_row_i = {row_i[1], row_i[0]};
-        flat_col_i = {col_i[1], col_i[0]};
-    `else
+    `ifdef IVERILOG
         $readmemh("./hex/row1.hex", row_i, 1, 0);
         $readmemh("./hex/col1.hex", col_i, 1, 0);
+    `else
+        row_i = {32'd960, -32'd37};
+        col_i = {-32'd1, 32'd83};
+        // flat_row_i = {row_i[1], row_i[0]};
+        // flat_col_i = {col_i[1], col_i[0]};
     `endif
     row_valid_i = 2'b11; col_valid_i = 2'b11;
     @(negedge clk_i);
@@ -186,14 +186,14 @@ initial begin
     end
     
     @(negedge clk_i);
-    `ifdef VERILATOR
-        row_i = {32'd10, 32'd0};
-        col_i = {32'd99, 32'd0};
-        flat_row_i = {row_i[1], row_i[0]};
-        flat_col_i = {col_i[1], col_i[0]};
-    `else
+    `ifdef IVERILOG
         $readmemh("./hex/row2.hex", row_i, 1, 0);
         $readmemh("./hex/col2.hex", col_i, 1, 0);
+    `else
+        row_i = {32'd10, 32'd0};
+        col_i = {32'd99, 32'd0};
+        // flat_row_i = {row_i[1], row_i[0]};
+        // flat_col_i = {col_i[1], col_i[0]};
     `endif
     row_valid_i = 2'b10; col_valid_i = 2'b10;
     @(negedge clk_i);

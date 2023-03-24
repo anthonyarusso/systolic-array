@@ -23,7 +23,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log zynq_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source zynq_wrapper.tcl" );
+         "-log systolic_array.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source systolic_array.tcl" );
 
 
 

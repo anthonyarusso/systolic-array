@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/aarusso/systolic_array/systolic_array.runs/synth_1'
+HD_PWD='C:/Users/aarusso/systolic-array/systolic_array.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -40,4 +40,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log zynq_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source zynq_wrapper.tcl
+EAStep vivado -log systolic_array.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source systolic_array.tcl

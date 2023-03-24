@@ -1,13 +1,14 @@
-
-*** Running vivado
-    with args -log systolic_array.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source systolic_array.tcl
-
-
-****** Vivado v2019.1 (64-bit)
-  **** SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
-  **** IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
-
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Thu Mar 23 16:58:00 2023
+# Process ID: 1472
+# Current directory: C:/Users/aarusso/systolic-array/systolic_array.runs/synth_1
+# Command line: vivado.exe -log systolic_array.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source systolic_array.tcl
+# Log file: C:/Users/aarusso/systolic-array/systolic_array.runs/synth_1/systolic_array.vds
+# Journal file: C:/Users/aarusso/systolic-array/systolic_array.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
 source systolic_array.tcl -notrace
 Command: synth_design -top systolic_array -part xc7z020clg400-1
 Starting synth_design
