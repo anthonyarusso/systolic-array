@@ -68,7 +68,7 @@ wire [num_consumers_lp-1:0] onehot_w;
 wire [$clog2(array_width_p*array_height_p)-1:0] flush_count_w;
 wire [0:0] hottest_bit_w,  flush_done_w, all_consumers_ready_w;
 assign hottest_bit_w = onehot_w[num_consumers_lp-1];
-assign flush_done_w = (flush_count_w == (array_width_p*array_height_p));
+assign flush_done_w = (flush_count_w == (array_width_p*array_height_p)-1);
 assign all_consumers_ready_w = &row_ready_o & &col_ready_o;
 
 always_ff @(posedge clk_i) begin
@@ -80,12 +80,12 @@ always_ff @(posedge clk_i) begin
 end
 
 always_comb begin
-    casez ({state_r, valid_i, flush_i, hottest_bit_w, all_consumers_ready_w})
-    {READY_S, 4'b10??} : state_n = PEND_S;
-    {READY_S, 4'b01??} : state_n = FLUSH_S;
-    {PEND_S, 4'b??1?}  : state_n = WORK_S;
-    {WORK_S, 4'b???1}  : state_n = READY_S;
-    {FLUSH_S, 4'b??1?} : state_n = READY_S;
+    casez ({state_r, valid_i, flush_i, hottest_bit_w, flush_done_w, all_consumers_ready_w})
+    {READY_S, 5'b10???} : state_n = PEND_S;
+    {READY_S, 5'b01???} : state_n = FLUSH_S;
+    {PEND_S, 5'b??1??}  : state_n = WORK_S;
+    {WORK_S, 5'b????1}  : state_n = READY_S;
+    {FLUSH_S, 5'b???1?} : state_n = READY_S;
     default : state_n <= state_r;
     endcase
 end
