@@ -35,9 +35,12 @@ nonsynth_reset_gen
 rg
  (.clk_i(clk_i)
  ,.async_reset_o(reset_i));
+
+logic [width_p-1:0] data_i, data_o, correct_data_o;
+logic [0:0] flush_i, ready_o, valid_i, data_i, valid_o, yumi_i;
  
 assign en_i = 1'b1;
-assign error_o = 1'b0;
+assign error_o = (data_o != correct_data_o);
  
 top
 #(.width_p(width_p)
@@ -54,7 +57,7 @@ dut
 ,.data_i()
 ,.valid_o()
 ,.yumi_i()
-,.data_o()
+,.data_o(data_o)
 );
 
 initial begin
@@ -64,6 +67,15 @@ initial begin
         $dumpfile("iverilog.vcd");
     `endif
         $dumpvars;
+
+    $display("Begin test:");
+    $display();
+    #10;
+    flush_i = 1'b0;
+    valid_i = 1'b0;
+    yumi_i = 1'b0;
+    data_i = '0;
+
     if (!error_o) $finish(); // Probably didn't error.
     // Warning Verilator will reach this line and be okay, anything else will
     // probably hang.
