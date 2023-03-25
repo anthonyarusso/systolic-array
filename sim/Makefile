@@ -1,12 +1,14 @@
 TB_FILE=tb_file
 
+SOURCES += ../src/counter.sv
 # SOURCES += ../src/fifo.sv
 SOURCES += ../src/mac.sv
 SOURCES += ../src/nonsynth_clock_gen.sv
 SOURCES += ../src/nonsynth_reset_gen.sv
+SOURCES += ../src/onehot_counter.sv
 # SOURCES += ../src/ram_1w1r_async.sv
 SOURCES += ../src/systolic_array.sv
-# SOURCES += ../src/top.sv
+SOURCES += ../src/top.sv
 # SOURCES += ./mac_tb.sv
 SOURCES += ./testbench.sv
 

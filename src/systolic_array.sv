@@ -1,24 +1,6 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03/20/2023 02:31:07 AM
-// Design Name: 
-// Module Name: systolic_array
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
+// TODO: Implement flush functionality.
 
 module systolic_array
 #(
@@ -29,8 +11,6 @@ parameter width_p = 32
 (input [0:0] clk_i
 ,input [0:0] reset_i
 ,input [0:0] en_i
-
-,input [array_height_p-1:0] flush_i
 
 // Row consumer interface
 ,input [(width_p * array_height_p)-1:0] row_i
@@ -60,7 +40,6 @@ wire [0:0] z_valids_w [array_height_p-1:0][array_width_p-1:0];
 wire [0:0] row_readys_w [array_height_p-1:0][array_width_p:0];// one extra col
 wire [0:0] col_readys_w [array_height_p:0][array_width_p-1:0]; // one extra row
 wire [0:0] z_readys_w [array_height_p-1:0][array_width_p-1:0];
-wire [0:0] flushes_w [array_height_p-1:0][array_width_p:0]; // one extra col
 
 // Connect all MACs on the top and left sides to inputs
 // TOP
@@ -74,7 +53,6 @@ for (genvar i = 0; i < array_height_p; i++) begin
     assign rows_w[i][0] = row_i[(width_p*(i+1))-1:(width_p*i)];
     assign row_valids_w[i][0] = row_valid_i[i];
     assign row_ready_o[i] = row_readys_w[i][0];
-    assign flushes_w[i][0] = flush_i[i];
 end
 
 // Connect every MAC's accumulation register and accum_valids to the outputs.
@@ -106,8 +84,6 @@ for (genvar i = 0; i < array_height_p; i++) begin
          (.clk_i(clk_i)
          ,.reset_i(reset_i)
          ,.en_i(en_i)
-         ,.flush_i(flushes_w[i][j])
-         ,.flush_o(flushes_w[i][j+1])
          ,.accum_o(z_w[i][j])
          ,.accum_valid_o(z_valids_w[i][j])
          ,.a_valid_i(row_valids_w[i][j])
