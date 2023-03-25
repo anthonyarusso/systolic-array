@@ -37,7 +37,7 @@ rg
  ,.async_reset_o(reset_i));
 
 logic [width_p-1:0] data_i, data_o, correct_data_o;
-logic [0:0] flush_i, ready_o, valid_i, data_i, valid_o, yumi_i;
+logic [0:0] flush_i, ready_o, valid_i, valid_o, yumi_i;
  
 assign en_i = 1'b1;
 assign error_o = (data_o != correct_data_o);
@@ -51,12 +51,12 @@ dut
 (.clk_i(clk_i)
 ,.reset_i(reset_i)
 ,.en_i(en_i)
-,.flush_i()
-,.ready_o()
-,.valid_i()
-,.data_i()
-,.valid_o()
-,.yumi_i()
+,.flush_i(flush_i)
+,.ready_o(ready_o)
+,.valid_i(valid_i)
+,.data_i(data_i)
+,.valid_o(valid_o)
+,.yumi_i(yumi_i)
 ,.data_o(data_o)
 );
 
@@ -71,10 +71,16 @@ initial begin
     $display("Begin test:");
     $display();
     #10;
+    correct_data_o = '0;
+    data_i = '0;
     flush_i = 1'b0;
     valid_i = 1'b0;
     yumi_i = 1'b0;
-    data_i = '0;
+
+    if (error_o) begin
+        $display("Error!");
+        $finish();
+    end
 
     if (!error_o) $finish(); // Probably didn't error.
     // Warning Verilator will reach this line and be okay, anything else will
