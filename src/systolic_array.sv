@@ -59,8 +59,8 @@ end
 for (genvar i = 0; i < array_height_p; i++) begin
     for (genvar j = 0; j < array_width_p ; j++) begin
         assign z_o[
-            (width_p*(i+1+(j*array_width_p)))-1 : 
-            (width_p*(i+(j*array_width_p)))
+            (width_p*(j+1+(i*array_width_p)))-1 : 
+            (width_p*(j+(i*array_width_p)))
             ] = z_w[i][j]; // flatten the accumulator array into one obnoxious bus.
         assign z_valid_o[i+(j*array_width_p)] = z_valids_w[i][j];
         assign z_readys_w[i][j] = z_yumi_i[i+(j*array_width_p)];

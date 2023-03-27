@@ -64,9 +64,17 @@ always_comb begin
     {IDLE_S, 5'b01???}   : state_n = FLUSH_S;
     {FLUSH_S, 5'b????1}  : state_n = F_DONE_S;
     {F_DONE_S, 5'b?????} : state_n = INPUT_S;
-    default : state_n = IDLE_S;
+    default : state_n = state_r;
 
     endcase
+end
+
+always_ff @(posedge clk_i) begin
+    if (reset_i) begin
+        state_r <= IDLE_S;
+    end else if (en_i) begin
+        state_r <= state_n;
+    end
 end
 
 wire [num_consumers_lp-1:0] onehot_w;
@@ -93,13 +101,30 @@ assign flush_done_w = (flush_count_w == (num_macs_lp-1));
 assign flush_array_w = (state_r == F_DONE_S);
 assign reset_onehot_w = (state_r == IDLE_S) & valid_i;
 
+// Due to weird timing issues, the MAC consumers do not always grab data_i
+// on the same clock cycle as they are slected by the onehot counter
+// (presumably because the onehot selects them at the same time they update
+// their input registers). To work around this, I've manually increased the
+// clock period of the onehot_counter to two clock cycles using the slow_en_r
+// signal so each MAC consumer has an extra clock cycle to consume data_i.
+logic [0:0] slow_en_r;
+
+always_ff @(posedge clk_i) begin
+    if (reset_i) begin
+        slow_en_r <= 1'b0;
+    end else if (en_i & valid_i) begin
+        slow_en_r <= ~slow_en_r;
+    end
+end
+
 // The one hot counter sends a "valid_i" signal to only one of the outward
 // facing MAC consumers at a time.
 onehot_counter
 #(num_consumers_lp)
 onehot_counter_inst
 (.clk_i(clk_i)
-,.en_i(en_i & valid_i)
+// ,.en_i(en_i & valid_i)
+,.en_i(en_i & slow_en_r)
 ,.reset_i(reset_i | (reset_onehot_w))
 ,.count_o(onehot_w)
 );
@@ -149,5 +174,7 @@ always_comb begin
         default: data_o_l = '0; // 'z;
     endcase
 end
+
+assign data_o = data_o_l;
 
 endmodule

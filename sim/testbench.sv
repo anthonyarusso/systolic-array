@@ -95,6 +95,7 @@ initial begin
     // |1  2|   █  █       |7  10|
     // |3  4|   █  █  ---> |15 22|
 
+    // Input cycle 1
     valid_i = 1'b1;
     data_i = 8'd3;
     #20;
@@ -103,11 +104,25 @@ initial begin
     data_i = 8'd2;
     #20;
     data_i = 8'd4;
-    #20; // extra time for valid to hold.
+    #20;
     valid_i = 1'b0;
+    #20;
+
+    // Input cycle 2
+    valid_i = 1'b1;
+    data_i = 8'd1;
+    #20;
+    data_i = 8'd2;
+    #20;
+    data_i = 8'd1;
+    #20;
+    data_i = 8'd3;
+    #20;
+    valid_i = 1'b0;
+    #20;
 
     // For waveform only.
-    correct_z_w = {8'd16, 8'd12, 8'd8, 8'd6};
+    correct_z_w = {8'd22, 8'd15, 8'd10, 8'd7};
 
     #100;
 
