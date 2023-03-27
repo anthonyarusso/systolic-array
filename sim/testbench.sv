@@ -8,6 +8,7 @@ localparam array_height_p = 2;
 localparam max_clks = 2 * array_width_p * array_height_p;
 logic clk_i, reset_i, en_i, error_o; 
 int i;
+logic [31:0] correct_z_w;
 
 // Assume both arrays are the same size (and square for now)
 // Both are n x n
@@ -76,6 +77,39 @@ initial begin
     flush_i = 1'b0;
     valid_i = 1'b0;
     yumi_i = 1'b0;
+
+    @(negedge reset_i);
+    #5; // re-align with posedge
+    
+    // Matrix indices are as follows:
+    // |0  1|
+    // |2  3|
+    // Systolic array consumer indices are as follows:
+    //    0  1
+    //  2 ╔═══╗
+    //    ║   ║
+    //  3 ╚═══╝
+
+    //         |1  2|
+    //         |3  4|
+    // |1  2|   █  █       |7  10|
+    // |3  4|   █  █  ---> |15 22|
+
+    valid_i = 1'b1;
+    data_i = 8'd3;
+    #20;
+    data_i = 8'd4;
+    #20;
+    data_i = 8'd2;
+    #20;
+    data_i = 8'd4;
+    #20; // extra time for valid to hold.
+    valid_i = 1'b0;
+
+    // For waveform only.
+    correct_z_w = {8'd16, 8'd12, 8'd8, 8'd6};
+
+    #100;
 
     if (error_o) begin
         $display("Error!");
