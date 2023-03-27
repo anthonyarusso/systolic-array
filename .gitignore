@@ -1,6 +1,12 @@
 *.fst
 *.vcd
+*.bin
+*.rpt
+*.asc
+*.json
 *.yslog
+*.nplog
+
 tb_file
 .DS_Store
 obj_dir/
