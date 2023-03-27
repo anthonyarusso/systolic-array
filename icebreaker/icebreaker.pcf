@@ -1,0 +1,46 @@
+# Icebreaker Physical Constraints File (.pcf)
+# 
+# This file assigns inputs/outputs to physical pins numbers on the icebreaker board.
+#
+# This particular PCF is derived from:
+# https://github.com/YosysHQ/icestorm/blob/master/examples/icebreaker/icebreaker.pcf
+# and adapted to use naming mechanisms consistent with the BSG style
+# guide
+
+## Board Clock: 12 MHz
+set_frequency  clk_12mhz_i             12
+set_io -nowarn clk_12mhz_i             35
+
+## Buttons
+set_io -nowarn reset_n_async_unsafe_i  10
+
+set_io -nowarn button_async_unsafe_i[1]   20
+set_io -nowarn button_async_unsafe_i[2]   19
+set_io -nowarn button_async_unsafe_i[3]   18
+
+# LEDs and Buttons (PMOD 2)
+set_io -nowarn led_o[1]                26 # L1
+set_io -nowarn led_o[2]                27 # L2
+set_io -nowarn led_o[3]                25 # L3
+set_io -nowarn led_o[4]                23 # L4
+set_io -nowarn led_o[5]                21 # L5
+
+# PMOD 1A
+set_io -nowarn ssd_o[0]                 4
+set_io -nowarn ssd_o[1]                 2
+set_io -nowarn ssd_o[2]                47
+set_io -nowarn ssd_o[3]                45
+set_io -nowarn ssd_o[4]                 3
+set_io -nowarn ssd_o[5]                48
+set_io -nowarn ssd_o[6]                46
+set_io -nowarn ssd_o[7]                44
+
+# PMOD 1B
+set_io -nowarn kpyd_col_o[0]               43 
+set_io -nowarn kpyd_col_o[1]               38
+set_io -nowarn kpyd_col_o[2]               34
+set_io -nowarn kpyd_col_o[3]               31
+set_io -nowarn kpyd_row_i[0]               42
+set_io -nowarn kpyd_row_i[1]               36
+set_io -nowarn kpyd_row_i[2]               32
+set_io -nowarn kpyd_row_i[3]               28
