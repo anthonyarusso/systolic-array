@@ -124,7 +124,19 @@ initial begin
     // For waveform only.
     correct_z_w = {8'd22, 8'd15, 8'd10, 8'd7};
 
-    #100;
+    #20;
+    flush_i = 1'b1;
+    correct_data_o = 8'd7;
+    #10;
+    flush_i = 1'b0;
+    correct_data_o = 8'd10;
+    #10;
+    correct_data_o = 8'd15;
+    #10;
+    correct_data_o = 8'd22;
+    #10;
+    correct_data_o = '0;
+    #20;
 
     if (error_o) begin
         $display("Error!");

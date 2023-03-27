@@ -9,6 +9,7 @@ module counter
 logic [width_p-1:0] count_r, count_n;
 
 assign count_n = count_r + 1;
+assign count_o = count_r;
 
 always_ff @(posedge clk_i) begin
     if (reset_i) begin
