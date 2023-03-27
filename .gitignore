@@ -1,6 +1,6 @@
-*.hex
 *.fst
 *.vcd
+*.yslog
 tb_file
 .DS_Store
 obj_dir/

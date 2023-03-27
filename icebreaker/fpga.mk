@@ -1,4 +1,4 @@
-# CSE x25 Lab 1
+# NOT MY WORK! - Credit Dustin Richmond, UCSC.
 
 # If you have the tools  installed in a non-standard path,
 # you can override these to specify the path to the executable.
@@ -8,12 +8,12 @@ ICEPROG ?= iceprog
 ICEPACK ?= icepack
 ICETIME ?= icetime
 
-PCF_PATH = ../../provided_modules/icebreaker.pcf
+PCF_PATH = ./icebreaker.pcf
 prog: top.bin
 	$(ICEPROG) $<
 
-top.json: top.sv $(SYNTH_SOURCES)
-	$(YOSYS) -ql top.yslog -p 'synth_ice40 -top top -json $@' top.sv $(SYNTH_SOURCES)
+top.json: top.sv $(SOURCES)
+	$(YOSYS) -ql top.yslog -p 'synth_ice40 -top top -json $@' top.sv $(SOURCES)
 
 top.asc: top.json $(PCF_PATH)
 	$(NEXTPNR) -ql top.nplog --up5k --package sg48 --freq 12 --asc $@ --pcf $(PCF_PATH) --json $< --top top

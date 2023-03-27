@@ -1,5 +1,5 @@
-module kpyd2ssd
-  (input [7:0] kpyd_i
+module kypd2ssd
+  (input [7:0] kypd_i
   ,output [7:0] ssd_o);
 
    // Your code here
@@ -17,8 +17,8 @@ module kpyd2ssd
    localparam COL_3 = 4'b0010;
    localparam COL_4 = 4'b0001;
 
-  // kpyd_i [7:4] corresponds to ROWs 1 thru 4
-  // kpyd_i [3:0] corresponds to COLs 1 thru 4
+  // kypd_i [7:4] corresponds to ROWs 1 thru 4
+  // kypd_i [3:0] corresponds to COLs 1 thru 4
 
   // Assign addresses to each button's corresponding seven-segment display.
   // Our seven-segment display supports 16 or 2^4 characters. 4 bits to
@@ -26,7 +26,7 @@ module kpyd2ssd
   logic [4:0] ssd_addr_l;
 
   always_comb begin
-        case ({kpyd_i[7:4], kpyd_i[3:0]})
+        case ({kypd_i[7:4], kypd_i[3:0]})
             {ROW_1, COL_1} : ssd_addr_l = 5'h01;
             {ROW_1, COL_2} : ssd_addr_l = 5'h02;
             {ROW_1, COL_3} : ssd_addr_l = 5'h03;
@@ -77,7 +77,7 @@ module kpyd2ssd
   ,17
   ,"memory_init_file.hex"
   )
-  kpyd2ssd_ram_inst
+  kypd2ssd_ram_inst
   (.clk_i(1'b0)
   ,.reset_i(1'b0)
   ,.wr_valid_i(1'b0) // read only

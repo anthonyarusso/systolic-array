@@ -43,13 +43,7 @@ module top
      ,.q_o(reset_r));
        
  // Disable leds for now.
- assign led_o = 5'b00000;
- 
- kpyd2ssd
- #()
- kpyd2ssd_inst
- (.kpyd_i()
- ,.ssd_o(ssd_o)
- );
+ // assign led_o = 5'b00000;
+ assign led_o = 5'b11111;
 
 endmodule
