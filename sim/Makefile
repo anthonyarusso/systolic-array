@@ -7,10 +7,10 @@ SOURCES += ../src/nonsynth_clock_gen.sv
 SOURCES += ../src/nonsynth_reset_gen.sv
 SOURCES += ../src/onehot_counter.sv
 # SOURCES += ../src/ram_1w1r_async.sv
+SOURCES += ../src/mac_array.sv
 SOURCES += ../src/systolic_array.sv
-SOURCES += ../src/top.sv
 # SOURCES += ./mac_tb.sv
-# SOURCES += ../systolic_array_tb.sv
+# SOURCES += ./systolic_array_tb.sv
 SOURCES += ./testbench.sv
 
 # add -fst after "vvp ${TB_FILE}" to generate fst waveforms instead

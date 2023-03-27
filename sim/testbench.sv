@@ -43,7 +43,7 @@ logic [0:0] flush_i, ready_o, valid_i, valid_o, yumi_i;
 assign en_i = 1'b1;
 assign error_o = (data_o != correct_data_o);
  
-top
+systolic_array
 #(.width_p(width_p)
 ,.array_width_p(array_width_p)
 ,.array_height_p(array_height_p)
