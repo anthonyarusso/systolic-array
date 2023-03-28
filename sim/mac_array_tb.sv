@@ -84,7 +84,7 @@ end
  // assign error_o = z_valid_o & (flat_z_o !== correct_o);
  assign error_o = (flat_z_o !== flat_correct_o);
  
-systolic_array
+mac_array
 #(
  .width_p(width_p)
  ,.array_width_p(array_width_p)
@@ -94,7 +94,6 @@ dut
 (.clk_i(clk_i)
 ,.reset_i(reset_i)
 ,.en_i(en_i)
-,.flush_i(flush_i)
 ,.row_i(flat_row_i)
 ,.row_valid_i(row_valid_i)
 ,.row_ready_o(row_ready_o)
