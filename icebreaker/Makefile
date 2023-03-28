@@ -2,16 +2,15 @@
 TB_FILE=tb_file
 
 SOURCES += ../src/counter.sv
-# SOURCES += ../src/fifo.sv
+SOURCES += ../src/fifo.sv
 SOURCES += ../src/mac.sv
+SOURCES += ../src/mac_array.sv
 SOURCES += ../src/onehot_counter.sv
 SOURCES += ../src/ram_1w1r_async.sv
-SOURCES += ../src/mac_array.sv
 SOURCES += ../src/systolic_array.sv
 SOURCES += ./dff.sv
 SOURCES += ./inv.sv
 SOURCES += ./kypd2ssd.sv
-# SOURCES += ./top.sv
 
 # add -fst after "vvp ${TB_FILE}" to generate fst waveforms instead
 iverilog:
