@@ -1,17 +1,15 @@
 TB_FILE=tb_file
 
 SOURCES += ../src/counter.sv
-# SOURCES += ../src/fifo.sv
 SOURCES += ../src/mac.sv
 SOURCES += ./nonsynth_clock_gen.sv
 SOURCES += ./nonsynth_reset_gen.sv
 SOURCES += ../src/onehot_counter.sv
-# SOURCES += ../src/ram_1w1r_async.sv
 SOURCES += ../src/mac_array.sv
 SOURCES += ../src/systolic_array.sv
-# SOURCES += ./mac_tb.sv
-# SOURCES += ./systolic_array_tb.sv
-SOURCES += ./testbench.sv
+# SOURCES += ./testbench.sv
+SOURCES += ./sipo.sv
+SOURCES += ./sipo_tb.sv
 
 # add -fst after "vvp ${TB_FILE}" to generate fst waveforms instead
 iverilog:
@@ -33,5 +31,4 @@ clean:
 	@rm -rf obj_dir/
 	@rm -f iverilog.vcd
 	@rm -f verilator.fst
-	# @rm -f *.hex
 .PHONY: clean

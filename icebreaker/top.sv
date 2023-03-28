@@ -1,8 +1,4 @@
-// Top-level design file for the icebreaker FPGA board
-// NOT MY WORK. Credit to Dustin Richmond, UCSC.
-
-module top
-  (input [0:0] clk_12mhz_i
+// Top-level design file for the icebreaker FPGA board // NOT MY WORK. Credit to Dustin Richmond, UCSC.  module top (input [0:0] clk_12mhz_i
   ,input [0:0] reset_n_async_unsafe_i
    // n: Negative Polarity (0 when pressed, 1 otherwise)
    // async: Not synchronized to clock
@@ -12,6 +8,8 @@ module top
    // unsafe: Not De-Bounced
   ,output [7:0] ssd_o
   ,output [5:1] led_o);
+
+  localparam width_p = 8;
 
    // These two D Flip Flops form what is known as a Synchronizer. We
    // will learn about these in Week 5, but you can see more here:
@@ -83,7 +81,24 @@ module top
  assign data_w = btn_1_w;
 
  // Disable leds for now.
- assign led_o = 5'b00000;
- // I think button 3 is dead. :(
+ // assign led_o = 5'b00000;
+ assign led_o[1] = sipo_valid_w;
+
+wire [0:0] sipo_valid_w;
+wire [width_p-1:0] sipo_data_w;
+// Trickle in SIPO accepts one bit at a time.
+sipo
+#(.width_p(1)
+,.depth_p(width_p))
+sipo_inst
+(.clk_i(clk_12mhz_i)
+,.reset_i(reset_r)
+,.valid_i(en_w)
+,.data_i(data_w)
+,.valid_o(sipo_valid_w)
+,.data_o(sipo_data_w)
+);
+
+assign ssd_o = ~(sipo_data_w & {width_p{sipo_valid_w}});
 
 endmodule
