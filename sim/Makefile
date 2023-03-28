@@ -13,7 +13,7 @@ SOURCES += ./testbench.sv
 # uncomment the corresponding sources files.
 
 # ===== SIPO Testbench =====
-# SOURCES += ./sipo.sv
+# SOURCES += ../icebreaker/sipo.sv
 # SOURCES += ./sipo_tb.sv
 # ===== MAC Testbench =====
 # SOURCES += ./mac_tb.sv

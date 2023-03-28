@@ -1,4 +1,6 @@
 // Top-level design file for the icebreaker FPGA board // NOT MY WORK. Credit to Dustin Richmond, UCSC.  module top (input [0:0] clk_12mhz_i
+module top
+  (input [0:0] clk_12mhz_i
   ,input [0:0] reset_n_async_unsafe_i
    // n: Negative Polarity (0 when pressed, 1 otherwise)
    // async: Not synchronized to clock
@@ -80,10 +82,6 @@
  assign en_w = btn_2_sync & ~btn_2_w;
  assign data_w = btn_1_w;
 
- // Disable leds for now.
- // assign led_o = 5'b00000;
- assign led_o[1] = sipo_valid_w;
-
 wire [0:0] sipo_valid_w;
 wire [width_p-1:0] sipo_data_w;
 // Trickle in SIPO accepts one bit at a time.
@@ -99,6 +97,13 @@ sipo_inst
 ,.data_o(sipo_data_w)
 );
 
-assign ssd_o = ~(sipo_data_w & {width_p{sipo_valid_w}});
+// assign ssd_o = ~(sipo_data_w & {width_p{sipo_valid_w}});
+assign ssd_o = ~sipo_data_w; 
+
+// Disable leds for now.
+// assign led_o = 5'b00000;
+assign led_o[1] = sipo_valid_w;
+assign led_o[5:2] = 4'b0000;
+
 
 endmodule
