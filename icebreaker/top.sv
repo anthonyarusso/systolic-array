@@ -78,45 +78,17 @@ sipo_inst
 );
 
 // Edge detect sipo_valid_w so only one value gets read from memory.
-wire [0:0] sipo_edge_a_w, sipo_edge_b_w, single_sipo_valid_w;
-   dff
-     #()
-   single_valid_a_dff_inst
-     (.clk_i(clk_12mhz_i)
-     ,.reset_i(1'b0)
-     ,.d_i(sipo_valid_w)
-     ,.q_o(sipo_edge_a_w));
-
-   dff
-     #()
-   single_valid_b_dff_inst
-     (.clk_i(clk_12mhz_i)
-     ,.reset_i(1'b0)
-     ,.d_i(sipo_edge_a_w)
-     ,.q_o(sipo_edge_b_w));
-
-// Since I only have two working buttons, just count if
-// array_width_p + array_height_p numbers have been entered then
-// automatically display the matrix values.
-// wire [$clog2(array_width_p + array_height_p + 1)-1:0] entry_count_w;
-wire [3-1:0] entry_count_w;
-wire [0:0] entry_count_max_w;
-assign entry_count_max_w = (entry_count_w == (array_width_p + array_height_p));
-
-counter
-// #(.width_p($clog2(array_width_p + array_height_p + 1)))
-#(.width_p(3))
-entry_counter_inst
+wire [0:0] single_sipo_valid_w;
+edge_detector
+#(.rising_edge_p(1'b1))
+sipo_valid_edge_detector_inst
 (.clk_i(clk_12mhz_i)
-,.en_i(1'b1)
-,.reset_i(reset_r || entry_count_max_w)
-,.count_o(entry_count_w)
+,.d_i(sipo_valid_w)
+,.q_o(single_sipo_valid_w)
 );
 
-assign single_sipo_valid_w = sipo_edge_a_w & ~sipo_edge_b_w;
 wire [0:0] sys_ready_w, sys_valid_w, sys_yumi_w;
 wire [width_p-1:0] sys_data_w;
-/*
 
 systolic_array
 #(.width_p(width_p)
@@ -147,43 +119,65 @@ fifo_inst
 ,.ready_o(fifo_ready_w)
 ,.valid_i(sys_valid_w)
 ,.data_i(sys_data_w)
-,.yumi_i(fifo_yumi_w)
-,.valid_o()
+,.yumi_i(fifo_yumi_w & display_flag_r)
+,.valid_o(fifo_valid_w)
 ,.data_o(matrix_data_w)
 );
 
-wire five_sec_w, five_sec_sync_w;
+/* When FIFO becomes full (~ready_o), display_flag_r should go HIGH and stay
+* HIGH until FIFO becomes empty (~valid_o) */
+logic [0:0] display_flag_r, display_flag_n;
+wire [0:0] flag_up_w, flag_dw_w;
+
+edge_detector
+#(.rising_edge_p(1'b0))
+flag_up_edge_detector_inst
+(.clk_i(clk_12mhz_i)
+,.d_i(fifo_ready_w)
+,.q_o(flag_up_w)
+);
+edge_detector
+#(.rising_edge_p(1'b0))
+flag_dw_edge_detector_inst
+(.clk_i(clk_12mhz_i)
+,.d_i(fifo_valid_w)
+,.q_o(flag_dw_w)
+);
+
+assign display_flag_n = flag_up_w;
+
+always_ff @(posedge clk_12mhz_i) begin
+    if (reset_r) begin
+        display_flag_r <= 1'b0;
+    end else if (flag_up_w | flag_dw_w) begin
+        display_flag_r <= display_flag_n;
+    end
+end
+
+wire five_sec_w;
 clock_divider
 #(.width_p(26))
-clock_divider
+five_sec_clock_divider_inst
 (.clk_i(clk_12mhz_i)
-,.en_i(1'b1)
+,.en_i(display_flag_r)
 ,.reset_i(reset_r)
 ,.slow_clk_o(five_sec_w)
 );
 
 // Edge detect five_sec_w to consume one piece of matrix data every five
 // seconds.
-dff
- #()
-fifo_sync_dff_inst
- (.clk_i(clk_12mhz_i)
- ,.reset_i(1'b0)
- ,.d_i(five_sec_w)
- ,.q_o(five_sec_sync_w));
-
-dff
- #()
-fifo_edge_dff_inst
- (.clk_i(clk_12mhz_i)
- ,.reset_i(1'b0)
- ,.d_i(five_sec_sync_w)
- ,.q_o(fifo_yumi_w));
+edge_detector
+#(.rising_edge_p(1'b1))
+five_sec_edge_detector_inst
+(.clk_i(clk_12mhz_i)
+,.d_i(five_sec_w)
+,.q_o(fifo_yumi_w)
+);
 
 wire clk_91hz_w;
 clock_divider
 #(.width_p(17))
-clock_divider
+ssd_clock_divider_inst
 (.clk_i(clk_12mhz_i)
 ,.en_i(1'b1)
 ,.reset_i(reset_r)
@@ -198,10 +192,9 @@ two_ssd_inst
 ,.left_digit_i(matrix_data_w[7:4])
 ,.ssd_o(ssd_o)
 );
-*/
 
 // assign ssd_o = ~(sipo_data_w & {width_p{sipo_valid_w}});
-assign ssd_o = ~sipo_data_w; 
+// assign ssd_o = ~sipo_data_w; 
 // assign ssd_o = ~sys_data_w; 
 
 // Disable leds for now.

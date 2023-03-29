@@ -9,7 +9,7 @@ two_ssd
 (input [0:0] clk_50hz_i
 ,input [3:0] right_digit_i
 ,input [3:0] left_digit_i
-,.output [7:0] ssd_o
+,output [7:0] ssd_o
 );
 
   logic [3:0] curr_digit_w;

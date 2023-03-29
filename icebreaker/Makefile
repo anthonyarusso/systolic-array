@@ -9,10 +9,12 @@ SOURCES += ../src/systolic_array.sv
 SOURCES += ./clock_divider.sv
 SOURCES += ./dff.sv
 SOURCES += ./edge_detector.sv
+SOURCES += ./fifo.sv
 SOURCES += ./sipo.sv
 SOURCES += ./inv.sv
 SOURCES += ./kypd2ssd.sv
 SOURCES += ./ram_1w1r_async.sv
+SOURCES += ./two_ssd.sv
 
 # add -fst after "vvp ${TB_FILE}" to generate fst waveforms instead
 iverilog:

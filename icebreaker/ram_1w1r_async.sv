@@ -3,7 +3,7 @@
 module ram_1w1r_async
 #(parameter [31:0] width_p = 8
 ,parameter [31:0] depth_p = 128
-,parameter  filename_p = "memory_init_file.hex")
+,parameter  filename_p = "zeros.hex")
 (input [0:0] clk_i
 ,input [0:0] reset_i
 ,input [0:0] wr_valid_i

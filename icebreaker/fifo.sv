@@ -11,7 +11,7 @@ module fifo
 ,input [width_p-1:0] data_i
 // Producer interface
 ,input [0:0] yumi_i
-,output [width_p-1:0] valid_o
+,output [0:0] valid_o
 ,output [width_p-1:0] data_o
 );
 
