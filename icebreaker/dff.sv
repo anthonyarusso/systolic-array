@@ -1,6 +1,8 @@
 // D-type Flip-Flop
 // Declared variables are named in accordance with the "BSG Standard Suffixes"
 // https://docs.google.com/document/d/1xA5XUzBtz_D6aSyIBQUwFk_kSUdckrfxa2uzGjMgmCU/edit#heading=h.rhtqn8jwjs44
+`timescale 1ns / 1ps
+
 module dff
   #(parameter [0:0] reset_val_p = 1'b0)
   (input [0:0] clk_i

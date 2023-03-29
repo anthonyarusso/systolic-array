@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module
 edge_detector
 #(parameter rising_edge_p = 1'b1)

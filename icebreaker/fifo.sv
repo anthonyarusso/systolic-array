@@ -42,7 +42,7 @@ end
 
 ram_1w1r_async
 #(.width_p(width_p)
-,.depth_p(128))
+,.depth_p(depth_p))
 ram_1w1r_async_inst
 (.clk_i(clk_i)
 ,.reset_i(reset_i)

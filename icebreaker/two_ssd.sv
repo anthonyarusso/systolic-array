@@ -3,6 +3,8 @@
 * https://1bitsquared.com/products/pmod-7-segment-display
 * https://digilent.com/reference/pmod/pmodssd/reference-manual
 */
+`timescale 1ns / 1ps
+
 module
 two_ssd
 #()

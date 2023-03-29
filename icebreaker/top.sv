@@ -1,4 +1,5 @@
-// Top-level design file for the icebreaker FPGA board // NOT MY WORK. Credit to Dustin Richmond, UCSC.  module top (input [0:0] clk_12mhz_i
+`timescale 1ns / 1ps
+
 module top
   (input [0:0] clk_12mhz_i
   ,input [0:0] reset_n_async_unsafe_i
@@ -23,6 +24,8 @@ module top
    wire reset_sync_r;
    wire reset_r; // Use this as your reset_signal
    wire en_w, data_w;
+   wire five_sec_w;
+   wire clk_91hz_w;
 
    dff
      #()
@@ -90,6 +93,7 @@ sipo_valid_edge_detector_inst
 wire [0:0] sys_ready_w, sys_valid_w, sys_yumi_w;
 wire [width_p-1:0] sys_data_w;
 
+/*
 systolic_array
 #(.width_p(width_p)
 ,.array_width_p(array_width_p)
@@ -98,6 +102,7 @@ systolic_array_inst
 (.clk_i(clk_12mhz_i)
 ,.reset_i(reset_r)
 ,.en_i(1'b1)
+,.flush_i(1'b0)
 ,.ready_o(sys_ready_w)
 ,.valid_i(single_sipo_valid_w)
 ,.data_i(sipo_data_w)
@@ -123,10 +128,11 @@ fifo_inst
 ,.valid_o(fifo_valid_w)
 ,.data_o(matrix_data_w)
 );
+*/
 
 /* When FIFO becomes full (~ready_o), display_flag_r should go HIGH and stay
 * HIGH until FIFO becomes empty (~valid_o) */
-logic [0:0] display_flag_r, display_flag_n;
+logic [0:0] display_flag_r;
 wire [0:0] flag_up_w, flag_dw_w;
 
 edge_detector
@@ -144,17 +150,32 @@ flag_dw_edge_detector_inst
 ,.q_o(flag_dw_w)
 );
 
-assign display_flag_n = flag_up_w;
-
 always_ff @(posedge clk_12mhz_i) begin
     if (reset_r) begin
         display_flag_r <= 1'b0;
     end else if (flag_up_w | flag_dw_w) begin
-        display_flag_r <= display_flag_n;
+        display_flag_r <= flag_up_w;
     end
 end
 
-wire five_sec_w;
+// Matrix output to FIFO
+wire [0:0] fifo_ready_w, fifo_yumi_w, fifo_valid_w;
+wire [width_p-1:0] matrix_data_w;
+
+fifo
+#(.width_p(width_p)
+,.depth_p(num_macs_p))
+fifo_inst
+(.clk_i(clk_12mhz_i)
+,.reset_i(reset_r)
+,.ready_o(fifo_ready_w)
+,.valid_i(single_sipo_valid_w)
+,.data_i(sipo_data_w)
+,.yumi_i(fifo_yumi_w & display_flag_r)
+,.valid_o(fifo_valid_w)
+,.data_o(matrix_data_w)
+);
+
 clock_divider
 #(.width_p(26))
 five_sec_clock_divider_inst
@@ -174,7 +195,6 @@ five_sec_edge_detector_inst
 ,.q_o(fifo_yumi_w)
 );
 
-wire clk_91hz_w;
 clock_divider
 #(.width_p(17))
 ssd_clock_divider_inst
@@ -200,8 +220,9 @@ two_ssd_inst
 // Disable leds for now.
 // assign led_o = 5'b00000;
 assign led_o[1] = sipo_valid_w;
-assign led_o[2] = sys_ready_w;
-assign led_o[3] = sys_valid_w;
+assign led_o[2] = display_flag_r;
+assign led_o[3] = button_async_unsafe_i[3];
 assign led_o[4] = single_sipo_valid_w;
+assign led_o[5] = fifo_valid_w;
 
 endmodule
