@@ -17,9 +17,9 @@ module ram_1w1r_async
 
 logic [width_p - 1 : 0] mem [depth_p - 1 : 0];
 
-//initial begin
-//   $readmemh(filename_p, mem, 0, depth_p-1);
-//end
+initial begin
+   $readmemh(filename_p, mem, 0, depth_p-1);
+end
 
 // Check for address conflict
 assign rd_data_o = ((rd_addr_i == wr_addr_i) && wr_valid_i) ?
