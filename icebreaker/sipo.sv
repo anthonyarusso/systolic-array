@@ -47,9 +47,9 @@ always_ff @(posedge clk_i) begin
     end
 end
 
-// assign full_write_cycle_w = (wr_ptr_r == (depth_p-1)) & valid_i;
+assign full_write_cycle_w = (wr_ptr_r == (depth_p-1)) & valid_i;
 // For Verilator sim
-assign full_write_cycle_w = (wr_ptr_r == {depth_p-1}[2:0]) & valid_i;
+// assign full_write_cycle_w = (wr_ptr_r == {depth_p-1}[2:0]) & valid_i;
 assign valid_o = one_full_write_cycle_r & (wr_ptr_r == '0);
        
 endmodule

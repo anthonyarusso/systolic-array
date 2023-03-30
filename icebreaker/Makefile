@@ -14,6 +14,7 @@ SOURCES += ./sipo.sv
 SOURCES += ./inv.sv
 SOURCES += ./kypd2ssd.sv
 SOURCES += ./ram_1w1r_async.sv
+SOURCES += ./toggle.sv
 SOURCES += ./two_ssd.sv
 
 # add -fst after "vvp ${TB_FILE}" to generate fst waveforms instead

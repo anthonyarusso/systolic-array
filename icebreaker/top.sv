@@ -23,9 +23,8 @@ module top
    wire reset_n_sync_r;
    wire reset_sync_r;
    wire reset_r; // Use this as your reset_signal
-   wire en_w, data_w;
-   wire five_sec_w;
-   wire clk_91hz_w;
+   wire [0:0] en_w, data_w;
+   wire [0:0] btn_2_w, btn_3_w, five_sec_w, clk_91hz_w, toggle_display_w;
 
    dff
      #()
@@ -49,13 +48,23 @@ module top
      ,.d_i(reset_sync_r)
      ,.q_o(reset_r));
    
-   edge_detector
-   #(.rising_edge_p(1'b1))
-   btn_2_edge_detector_inst
-   (.clk_i(clk_12mhz_i)
-   ,.d_i(button_async_unsafe_i[2])
-   ,.q_o(en_w)
-   );
+    // Edge detect button 2 relative to the 91hz clock and then edge
+    // detect the resulting signal according to the 12Mhz clock.
+    edge_detector
+    #(.rising_edge_p(1'b1))
+    btn_2_edge_detector_inst
+    (.clk_i(clk_91hz_w)
+    ,.d_i(button_async_unsafe_i[2])
+    ,.q_o(btn_2_w)
+    );
+
+    edge_detector
+    #(.rising_edge_p(1'b1))
+    enable_edge_detector_inst
+    (.clk_i(clk_12mhz_i)
+    ,.d_i(btn_2_w)
+    ,.q_o(en_w)
+    );
 
    dff
      #()
@@ -64,6 +73,23 @@ module top
      ,.reset_i(1'b0)
      ,.d_i(button_async_unsafe_i[1])
      ,.q_o(data_w));
+
+    edge_detector
+    #(.rising_edge_p(1'b1))
+    btn_3_edge_detector_inst
+    (.clk_i(clk_12mhz_i)
+    ,.d_i(button_async_unsafe_i[3])
+    ,.q_o(btn_3_w)
+    );
+
+    toggle
+    #(.reset_val_p(1'b0))
+    display_toggle_inst
+    (.clk_i(clk_12mhz_i)
+    ,.reset_i(reset_r)
+    ,.toggle_i(btn_3_w)
+    ,.toggle_o(toggle_display_w)
+    );
 
 wire [0:0] sipo_valid_w;
 wire [width_p-1:0] sipo_data_w;
@@ -204,12 +230,15 @@ ssd_clock_divider_inst
 ,.slow_clk_o(clk_91hz_w)
 );
 
+wire [7:0] display_data_w;
+assign display_data_w = toggle_display_w ? sipo_data_w : matrix_data_w;
+
 two_ssd
 #()
 two_ssd_inst
 (.clk_50hz_i(clk_91hz_w)
-,.right_digit_i(matrix_data_w[3:0])
-,.left_digit_i(matrix_data_w[7:4])
+,.right_digit_i(display_data_w[7:4])
+,.left_digit_i(display_data_w[3:0])
 ,.ssd_o(ssd_o)
 );
 
@@ -221,8 +250,8 @@ two_ssd_inst
 // assign led_o = 5'b00000;
 assign led_o[1] = sipo_valid_w;
 assign led_o[2] = display_flag_r;
-assign led_o[3] = button_async_unsafe_i[3];
-assign led_o[4] = single_sipo_valid_w;
+assign led_o[3] = toggle_display_w;
+assign led_o[4] = single_sipo_valid_w; // think of a better signal
 assign led_o[5] = fifo_valid_w;
 
 endmodule
