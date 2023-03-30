@@ -17,8 +17,7 @@ module fifo
 
 wire [0:0] empty_w, full_w;
 assign empty_w = (rd_ptr_r == wr_ptr_r);
-assign full_w = (wr_ptr_r == (rd_ptr_r-1)) |
-    (rd_ptr_r == 0 && wr_ptr_r == ($clog2(depth_p)-1));
+assign full_w = (wr_ptr_r == (rd_ptr_r-1));
 assign ready_o = ~full_w;
 assign valid_o = ~empty_w;
     

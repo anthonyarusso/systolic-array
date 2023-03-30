@@ -7,7 +7,7 @@ SOURCES += ./nonsynth_reset_gen.sv
 SOURCES += ../src/onehot_counter.sv
 SOURCES += ../src/mac_array.sv
 SOURCES += ../src/systolic_array.sv
-SOURCES += ./testbench.sv
+# SOURCES += ./testbench.sv
 
 # To run the other testbenches, comment out testbench.sv and
 # uncomment the corresponding sources files.
@@ -19,6 +19,14 @@ SOURCES += ./testbench.sv
 # SOURCES += ./mac_tb.sv
 # ===== MAC Array Testbench =====
 # SOURCES += ./mac_array_tb.sv
+# ===== Top Testbench =====
+ SOURCES += ../icebreaker/clock_divider.sv
+ SOURCES += ../icebreaker/dff.sv
+ SOURCES += ../icebreaker/edge_detector.sv
+ SOURCES += ../icebreaker/fifo.sv
+ SOURCES += ../icebreaker/ram_1w1r_async.sv
+ SOURCES += ../icebreaker/sipo.sv
+ SOURCES += ./top_tb.sv
 
 # add -fst after "vvp ${TB_FILE}" to generate fst waveforms instead
 iverilog:

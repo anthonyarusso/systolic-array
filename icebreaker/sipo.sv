@@ -2,8 +2,7 @@
 
 module sipo
 #(parameter [31:0] width_p = 8
-,parameter [31:0] depth_p = 128
-,parameter  filename_p = "memory_init_file.hex")
+,parameter [31:0] depth_p = 128)
 (input [0:0] clk_i
 ,input [0:0] reset_i
 ,input [0:0] valid_i
@@ -48,7 +47,9 @@ always_ff @(posedge clk_i) begin
     end
 end
 
-assign full_write_cycle_w = (wr_ptr_r == (depth_p-1)) & valid_i;
+// assign full_write_cycle_w = (wr_ptr_r == (depth_p-1)) & valid_i;
+// For Verilator sim
+assign full_write_cycle_w = (wr_ptr_r == {depth_p-1}[2:0]) & valid_i;
 assign valid_o = one_full_write_cycle_r & (wr_ptr_r == '0);
        
 endmodule
