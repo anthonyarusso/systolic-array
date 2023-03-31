@@ -37,7 +37,10 @@ always_ff @(posedge clk_i) begin
     if (reset_i) begin
         rd_ptr_r <= '0;
     end else if (yumi_i && valid_o) begin
-        rd_ptr_r <= rd_ptr_r + 1;
+        if (rd_ptr_r != depth_p)
+            rd_ptr_r <= rd_ptr_r + 1;
+        else
+            rd_ptr_r <= '0;
     end
 end
 
@@ -45,7 +48,10 @@ always_ff @(posedge clk_i) begin
     if (reset_i) begin
         wr_ptr_r <= '0;
     end else if (ready_o && valid_i) begin
-        wr_ptr_r <= wr_ptr_r + 1;
+        if (wr_ptr_r != depth_p)
+            wr_ptr_r <= wr_ptr_r + 1;
+        else
+            wr_ptr_r <= '0;
     end
 end
 
