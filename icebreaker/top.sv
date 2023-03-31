@@ -160,6 +160,8 @@ fifo_inst
 * HIGH until FIFO becomes empty (~valid_o) */
 logic [0:0] display_flag_r;
 wire [0:0] flag_up_w, flag_dw_w;
+wire [0:0] fifo_ready_w, fifo_yumi_w, fifo_valid_w;
+wire [width_p-1:0] matrix_data_w;
 
 edge_detector
 #(.rising_edge_p(1'b0))
@@ -185,9 +187,6 @@ always_ff @(posedge clk_12mhz_i) begin
 end
 
 // Matrix output to FIFO
-wire [0:0] fifo_ready_w, fifo_yumi_w, fifo_valid_w;
-wire [width_p-1:0] matrix_data_w;
-
 fifo
 #(.width_p(width_p)
 ,.depth_p(num_macs_p))
@@ -207,7 +206,7 @@ clock_divider
 five_sec_clock_divider_inst
 (.clk_i(clk_12mhz_i)
 ,.en_i(display_flag_r)
-,.reset_i(reset_r)
+,.reset_i(reset_r) // | flag_dw_w
 ,.slow_clk_o(five_sec_w)
 );
 
