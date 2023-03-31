@@ -255,8 +255,8 @@ ssd_clock_divider_inst
 
 wire [7:0] display_data_w;
 // assign display_data_w = toggle_display_w ? sipo_data_w : matrix_data_w;
-// assign display_data_w = matrix_data_w;
-assign display_data_w = onehot_disp_w;
+assign display_data_w = matrix_data_w;
+// assign display_data_w = onehot_disp_w;
 
 two_ssd
 #()
