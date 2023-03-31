@@ -23,6 +23,7 @@ parameter width_p = 32
 ,output [width_p-1:0] data_o
 // DEBUG ONLY
 ,output [0:0] busy_o
+,output [7:0] onehot_o
 );
 
 localparam num_consumers_lp = array_width_p + array_height_p;
@@ -72,6 +73,7 @@ always_comb begin
 end
 
 assign busy_o = (state_r == BUSY_S);
+assign onehot_o = {4'd0, onehot_w};
 
 always_ff @(posedge clk_i) begin
     if (reset_i) begin
@@ -103,8 +105,8 @@ assign hottest_bit_w = onehot_w[num_consumers_lp-1];
 assign all_consumers_ready_w = (&row_ready_o & &col_ready_o);
 assign flush_done_w = (flush_count_w == (num_macs_lp-1));
 assign flush_array_w = (state_r == F_DONE_S);
-// assign reset_onehot_w = (state_r == IDLE_S) & valid_i;
-assign reset_onehot_w = (state_n == IDLE_S); 
+assign reset_onehot_w = (state_r == IDLE_S) & valid_i;
+// assign reset_onehot_w = (state_n == IDLE_S) & ~valid_i; 
 
 
 // Assign outputs.
@@ -133,8 +135,8 @@ onehot_counter
 #(num_consumers_lp)
 onehot_counter_inst
 (.clk_i(clk_i)
-,.en_i(en_i & valid_i)
-// ,.en_i(en_i & slow_en_r)
+// ,.en_i(en_i & valid_i)
+,.en_i(en_i & slow_en_r)
 ,.reset_i(reset_i | reset_onehot_w)
 ,.count_o(onehot_w)
 );

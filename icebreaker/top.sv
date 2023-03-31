@@ -137,6 +137,7 @@ wire [0:0] sys_ready_w, sys_valid_w, sys_yumi_w;
 wire [width_p-1:0] sys_data_w;
 // DEBUG ONLY
 wire [0:0] busy_w;
+wire [7:0] onehot_disp_w;
 
 systolic_array
 #(.width_p(width_p)
@@ -154,6 +155,7 @@ systolic_array_inst
 ,.yumi_i(1'b1)
 ,.data_o(sys_data_w)
 ,.busy_o(busy_w)
+,.onehot_o(onehot_disp_w)
 );
 
 // Matrix output to FIFO
@@ -252,7 +254,8 @@ ssd_clock_divider_inst
 
 wire [7:0] display_data_w;
 // assign display_data_w = toggle_display_w ? sipo_data_w : matrix_data_w;
-assign display_data_w = matrix_data_w;
+// assign display_data_w = matrix_data_w;
+assign display_data_w = onehot_disp_w;
 
 two_ssd
 #()
