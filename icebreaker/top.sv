@@ -121,6 +121,18 @@ sipo_valid_edge_detector_inst
 ,.q_o(single_sipo_valid_w)
 );
 
+logic [0:0] double_sipo_buffer_a_r, double_sipo_buffer_b_r;
+// TODO: Stupid band-aid fix workaround. :)
+// (It makes single_sipo_valid_w last two clock cycles instead of one.)
+always_ff @(posedge clk_12mhz_i) begin
+    double_sipo_buffer_a_r <= single_sipo_valid_w;
+    double_sipo_buffer_b_r <= double_sipo_buffer_a_r;
+end
+
+wire [0:0] double_sipo_valid_w;
+assign double_sipo_valid_w = (double_sipo_buffer_a_r | double_sipo_buffer_b_r);
+// END - Stupid fix
+
 wire [0:0] sys_ready_w, sys_valid_w, sys_yumi_w;
 wire [width_p-1:0] sys_data_w;
 // DEBUG ONLY
@@ -136,7 +148,7 @@ systolic_array_inst
 ,.en_i(1'b1)
 ,.flush_i(btn_3_w)
 ,.ready_o(sys_ready_w)
-,.valid_i(single_sipo_valid_w)
+,.valid_i(double_sipo_valid_w)
 ,.data_i(sipo_data_w)
 ,.valid_o(sys_valid_w)
 ,.yumi_i(1'b1)
