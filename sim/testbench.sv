@@ -112,6 +112,9 @@ initial begin
     valid_i = 1'b0;
     #20;
 
+    @(posedge ready_o);
+    #10;
+
     // Input cycle 2
     valid_i = 1'b1;
     data_i = 8'd1;
@@ -125,6 +128,7 @@ initial begin
     valid_i = 1'b0;
     #20;
 
+    @(posedge ready_o);
     // For waveform only.
     correct_z_w = {8'd22, 8'd15, 8'd10, 8'd7};
 

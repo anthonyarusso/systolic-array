@@ -103,7 +103,8 @@ assign hottest_bit_w = onehot_w[num_consumers_lp-1];
 assign all_consumers_ready_w = (&row_ready_o & &col_ready_o);
 assign flush_done_w = (flush_count_w == (num_macs_lp-1));
 assign flush_array_w = (state_r == F_DONE_S);
-assign reset_onehot_w = (state_r == IDLE_S) & valid_i;
+// assign reset_onehot_w = (state_r == IDLE_S) & valid_i;
+assign reset_onehot_w = (state_n == IDLE_S); 
 
 
 // Assign outputs.
