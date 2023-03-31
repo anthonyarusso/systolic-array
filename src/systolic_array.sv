@@ -63,7 +63,7 @@ always_comb begin
     })
 
     {IDLE_S,   5'b10???} : state_n = INPUT_S;
-    {INPUT_S,  5'b??1??} : state_n = BUSY_S;
+    {INPUT_S,  5'b1?1??} : state_n = BUSY_S;
     {BUSY_S,   5'b???1?} : state_n = IDLE_S;
     {IDLE_S,   5'b01???} : state_n = FLUSH_S;
     {FLUSH_S,  5'b????1} : state_n = F_DONE_S;
