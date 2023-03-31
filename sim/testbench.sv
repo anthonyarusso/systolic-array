@@ -45,6 +45,7 @@ assign error_o = (data_o != correct_data_o);
  
 // DEBUG ONLY
 wire [0:0] throwaway_busy_w;
+wire [7:0] throwaway_onehot_w;
 
 systolic_array
 #(.width_p(width_p)
@@ -63,6 +64,7 @@ dut
 ,.yumi_i(yumi_i)
 ,.data_o(data_o)
 ,.busy_o(throwaway_busy_w)
+,.onehot_o(throwaway_onehot_w)
 );
 
 initial begin
