@@ -181,7 +181,7 @@ flag_dw_edge_detector_inst
 always_ff @(posedge clk_12mhz_i) begin
     if (reset_r) begin
         display_flag_r <= 1'b0;
-    end else if (flag_up_w | flag_dw_w) begin
+    end else if (flag_up_w || flag_dw_w) begin
         display_flag_r <= flag_up_w;
     end
 end
@@ -250,7 +250,7 @@ two_ssd_inst
 assign led_o[1] = sipo_valid_w;
 assign led_o[2] = display_flag_r;
 assign led_o[3] = toggle_display_w;
-assign led_o[4] = single_sipo_valid_w; // think of a better signal
+assign led_o[4] = fifo_ready_w;
 assign led_o[5] = fifo_valid_w;
 
 endmodule
