@@ -121,10 +121,22 @@ sipo_valid_edge_detector_inst
 ,.q_o(single_sipo_valid_w)
 );
 
+logic [0:0] double_sipo_buffer_r;
+// TODO: Stupid band-aid fix workaround. :)
+// (It makes single_sipo_valid_w last two clock cycles instead of one.)
+always_ff @(posedge clk_12mhz_i) begin
+    double_sipo_buffer_r <= single_sipo_valid_w;
+end
+
+wire [0:0] double_sipo_valid_w;
+assign double_sipo_valid_w = (single_sipo_valid_w | double_sipo_buffer_r);
+// END - Stupid fix
+
 wire [0:0] sys_ready_w, sys_valid_w, sys_yumi_w;
 wire [width_p-1:0] sys_data_w;
+// DEBUG ONLY
+wire [0:0] busy_w;
 
-/*
 systolic_array
 #(.width_p(width_p)
 ,.array_width_p(array_width_p)
@@ -133,13 +145,14 @@ systolic_array_inst
 (.clk_i(clk_12mhz_i)
 ,.reset_i(reset_r)
 ,.en_i(1'b1)
-,.flush_i(1'b0)
+,.flush_i(btn_3_w)
 ,.ready_o(sys_ready_w)
 ,.valid_i(single_sipo_valid_w)
 ,.data_i(sipo_data_w)
 ,.valid_o(sys_valid_w)
 ,.yumi_i(1'b1)
 ,.data_o(sys_data_w)
+,.busy_o(busy_w)
 );
 
 // Matrix output to FIFO
@@ -159,14 +172,13 @@ fifo_inst
 ,.valid_o(fifo_valid_w)
 ,.data_o(matrix_data_w)
 );
-*/
 
 /* When FIFO becomes full (~ready_o), display_flag_r should go HIGH and stay
 * HIGH until FIFO becomes empty (~valid_o) */
 logic [0:0] display_flag_r;
 wire [0:0] flag_up_w, flag_dw_w;
-wire [0:0] fifo_ready_w, fifo_yumi_w, fifo_valid_w;
-wire [width_p-1:0] matrix_data_w;
+// wire [0:0] fifo_ready_w, fifo_yumi_w, fifo_valid_w;
+// wire [width_p-1:0] matrix_data_w;
 
 edge_detector
 #(.rising_edge_p(1'b0))
@@ -192,6 +204,7 @@ always_ff @(posedge clk_12mhz_i) begin
 end
 
 // Matrix output to FIFO
+/* OLD
 fifo
 #(.width_p(width_p)
 ,.depth_p(num_macs_p))
@@ -205,6 +218,7 @@ fifo_inst
 ,.valid_o(fifo_valid_w)
 ,.data_o(matrix_data_w)
 );
+*/
 
 clock_divider
 #(.width_p(26))
@@ -236,7 +250,8 @@ ssd_clock_divider_inst
 );
 
 wire [7:0] display_data_w;
-assign display_data_w = toggle_display_w ? sipo_data_w : matrix_data_w;
+// assign display_data_w = toggle_display_w ? sipo_data_w : matrix_data_w;
+assign display_data_w = matrix_data_w;
 
 two_ssd
 #()
@@ -247,16 +262,11 @@ two_ssd_inst
 ,.ssd_o(ssd_o)
 );
 
-// assign ssd_o = ~(sipo_data_w && {width_p{sipo_valid_w}});
-// assign ssd_o = ~sipo_data_w; 
-// assign ssd_o = ~sys_data_w; 
-
-// Disable leds for now.
-// assign led_o = 5'b00000;
 assign led_o[1] = sipo_valid_w;
 assign led_o[2] = display_flag_r;
-assign led_o[3] = toggle_display_w;
-assign led_o[4] = fifo_ready_w;
-assign led_o[5] = fifo_valid_w;
+// assign led_o[3] = toggle_display_w;
+assign led_o[3] = busy_w;
+assign led_o[4] = sys_ready_w;
+assign led_o[5] = sys_valid_w;
 
 endmodule
