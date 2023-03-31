@@ -15,18 +15,22 @@ SOURCES += ../src/systolic_array.sv
 # ===== SIPO Testbench =====
 # SOURCES += ../icebreaker/sipo.sv
 # SOURCES += ./sipo_tb.sv
+# ===== FIFO Testbench =====
+SOURCES += ../icebreaker/fifo.sv
+SOURCES += ../icebreaker/ram_1w1r_async.sv
+SOURCES += ./fifo_tb.sv
 # ===== MAC Testbench =====
 # SOURCES += ./mac_tb.sv
 # ===== MAC Array Testbench =====
 # SOURCES += ./mac_array_tb.sv
 # ===== Top Testbench =====
- SOURCES += ../icebreaker/clock_divider.sv
- SOURCES += ../icebreaker/dff.sv
- SOURCES += ../icebreaker/edge_detector.sv
- SOURCES += ../icebreaker/fifo.sv
- SOURCES += ../icebreaker/ram_1w1r_async.sv
- SOURCES += ../icebreaker/sipo.sv
- SOURCES += ./top_tb.sv
+# SOURCES += ../icebreaker/clock_divider.sv
+# SOURCES += ../icebreaker/dff.sv
+# SOURCES += ../icebreaker/edge_detector.sv
+# SOURCES += ../icebreaker/fifo.sv
+# SOURCES += ../icebreaker/ram_1w1r_async.sv
+# SOURCES += ../icebreaker/sipo.sv
+# SOURCES += ./top_tb.sv
 
 # add -fst after "vvp ${TB_FILE}" to generate fst waveforms instead
 iverilog:
