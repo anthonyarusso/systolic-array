@@ -136,7 +136,7 @@ assign double_sipo_valid_w = (double_sipo_buffer_a_r | double_sipo_buffer_b_r);
 wire [0:0] sys_ready_w, sys_valid_w, sys_yumi_w;
 wire [width_p-1:0] sys_data_w;
 // DEBUG ONLY
-wire [0:0] busy_w;
+wire [0:0] busy_w, idle_w;
 wire [7:0] onehot_disp_w;
 
 systolic_array
@@ -155,6 +155,7 @@ systolic_array_inst
 ,.yumi_i(1'b1)
 ,.data_o(sys_data_w)
 ,.busy_o(busy_w)
+,.idle_o(idle_w)
 ,.onehot_o(onehot_disp_w)
 );
 
@@ -254,8 +255,8 @@ ssd_clock_divider_inst
 
 wire [7:0] display_data_w;
 // assign display_data_w = toggle_display_w ? sipo_data_w : matrix_data_w;
-assign display_data_w = matrix_data_w;
-// assign display_data_w = onehot_disp_w;
+// assign display_data_w = matrix_data_w;
+assign display_data_w = onehot_disp_w;
 
 two_ssd
 #()
@@ -271,6 +272,6 @@ assign led_o[2] = display_flag_r;
 // assign led_o[3] = toggle_display_w;
 assign led_o[3] = busy_w;
 assign led_o[4] = sys_ready_w;
-assign led_o[5] = sys_valid_w;
+assign led_o[5] = idle_w;
 
 endmodule

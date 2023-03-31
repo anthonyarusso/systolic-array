@@ -23,6 +23,7 @@ parameter width_p = 32
 ,output [width_p-1:0] data_o
 // DEBUG ONLY
 ,output [0:0] busy_o
+,output [0:0] idle_o
 ,output [7:0] onehot_o
 );
 
@@ -61,11 +62,11 @@ always_comb begin
         flush_done_w
     })
 
-    {IDLE_S, 5'b10???}   : state_n = INPUT_S;
-    {INPUT_S, 5'b??1??}  : state_n = BUSY_S;
-    {BUSY_S, 5'b???1?}   : state_n = IDLE_S;
-    {IDLE_S, 5'b01???}   : state_n = FLUSH_S;
-    {FLUSH_S, 5'b????1}  : state_n = F_DONE_S;
+    {IDLE_S,   5'b10???} : state_n = INPUT_S;
+    {INPUT_S,  5'b??1??} : state_n = BUSY_S;
+    {BUSY_S,   5'b???1?} : state_n = IDLE_S;
+    {IDLE_S,   5'b01???} : state_n = FLUSH_S;
+    {FLUSH_S,  5'b????1} : state_n = F_DONE_S;
     {F_DONE_S, 5'b?????} : state_n = IDLE_S;
     default : state_n = state_r;
 
@@ -73,6 +74,7 @@ always_comb begin
 end
 
 assign busy_o = (state_r == BUSY_S);
+assign idle_o = (state_r == IDLE_S);
 assign onehot_o = {4'd0, onehot_w};
 
 always_ff @(posedge clk_i) begin
@@ -105,9 +107,7 @@ assign hottest_bit_w = onehot_w[num_consumers_lp-1];
 assign all_consumers_ready_w = (&row_ready_o & &col_ready_o);
 assign flush_done_w = (flush_count_w == (num_macs_lp-1));
 assign flush_array_w = (state_r == F_DONE_S);
-assign reset_onehot_w = (state_r == IDLE_S) & valid_i;
-// assign reset_onehot_w = (state_n == IDLE_S) & ~valid_i; 
-
+assign reset_onehot_w = ((state_r == IDLE_S) & valid_i);
 
 // Assign outputs.
 assign ready_o = ((state_r == IDLE_S) | (state_r == INPUT_S));
