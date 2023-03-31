@@ -43,6 +43,9 @@ logic [0:0] flush_i, ready_o, valid_i, valid_o, yumi_i;
 assign en_i = 1'b1;
 assign error_o = (data_o != correct_data_o);
  
+// DEBUG ONLY
+wire [0:0] throwaway_busy_w;
+
 systolic_array
 #(.width_p(width_p)
 ,.array_width_p(array_width_p)
@@ -59,6 +62,7 @@ dut
 ,.valid_o(valid_o)
 ,.yumi_i(yumi_i)
 ,.data_o(data_o)
+,.busy_o(throwaway_busy_w)
 );
 
 initial begin
@@ -98,26 +102,26 @@ initial begin
     // Input cycle 1
     valid_i = 1'b1;
     data_i = 8'd3;
-    #20;
+    #10; valid_i = 1'b0; #10; valid_i = 1'b1;
     data_i = 8'd4;
-    #20;
+    #10; valid_i = 1'b0; #10; valid_i = 1'b1;
     data_i = 8'd2;
-    #20;
+    #10; valid_i = 1'b0; #10; valid_i = 1'b1;
     data_i = 8'd4;
-    #20;
+    #10; valid_i = 1'b0; #10; valid_i = 1'b1;
     valid_i = 1'b0;
     #20;
 
     // Input cycle 2
     valid_i = 1'b1;
     data_i = 8'd1;
-    #20;
+    #10; valid_i = 1'b0; #10; valid_i = 1'b1;
     data_i = 8'd2;
-    #20;
+    #10; valid_i = 1'b0; #10; valid_i = 1'b1;
     data_i = 8'd1;
-    #20;
+    #10; valid_i = 1'b0; #10; valid_i = 1'b1;
     data_i = 8'd3;
-    #20;
+    #10; valid_i = 1'b0; #10; valid_i = 1'b1;
     valid_i = 1'b0;
     #20;
 

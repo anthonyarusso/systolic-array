@@ -132,8 +132,8 @@ onehot_counter
 #(num_consumers_lp)
 onehot_counter_inst
 (.clk_i(clk_i)
-,.en_i(en_i & valid_i)
-// ,.en_i(en_i & slow_en_r)
+// ,.en_i(en_i & valid_i)
+,.en_i(en_i & slow_en_r)
 ,.reset_i(reset_i | (reset_onehot_w))
 ,.count_o(onehot_w)
 );
