@@ -22,10 +22,7 @@ wire [0:0] empty_w, full_w;
 assign empty_w = (rd_ptr_r == wr_ptr_r);
 // WARN: the following approach to full_w only works where depth_p is a power
 // of 2. Otherwise, subtraction of rd_ptr_r-1 won't roll over to depth_p-1.
-// assign full_w = (wr_ptr_r == (rd_ptr_r-1));
-// assign full_w = (wr_ptr_r == (rd_ptr_r-1)) ||
-   // (rd_ptr_r == 0 && wr_ptr_r == ($clog2(depth_p)-1));
-`ifdef VERILATOR
+`ifdef WHY_ARE_YOU_LIKE_THIS // VERILATOR
     assign full_w = (wr_ptr_r == (rd_ptr_r - 1)) ||
         ((rd_ptr_r == '0) &&
         (wr_ptr_r == {depth_p}[$clog2(depth_p+1)-1:0]));
