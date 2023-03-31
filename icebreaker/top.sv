@@ -147,7 +147,7 @@ systolic_array_inst
 ,.en_i(1'b1)
 ,.flush_i(btn_3_w)
 ,.ready_o(sys_ready_w)
-,.valid_i(single_sipo_valid_w)
+,.valid_i(double_sipo_valid_w)
 ,.data_i(sipo_data_w)
 ,.valid_o(sys_valid_w)
 ,.yumi_i(1'b1)

@@ -7,7 +7,7 @@ SOURCES += ./nonsynth_reset_gen.sv
 SOURCES += ../src/onehot_counter.sv
 SOURCES += ../src/mac_array.sv
 SOURCES += ../src/systolic_array.sv
-# SOURCES += ./testbench.sv
+SOURCES += ./testbench.sv
 
 # To run the other testbenches, comment out testbench.sv and
 # uncomment the corresponding sources files.
@@ -16,9 +16,9 @@ SOURCES += ../src/systolic_array.sv
 # SOURCES += ../icebreaker/sipo.sv
 # SOURCES += ./sipo_tb.sv
 # ===== FIFO Testbench =====
-SOURCES += ../icebreaker/fifo.sv
-SOURCES += ../icebreaker/ram_1w1r_async.sv
-SOURCES += ./fifo_tb.sv
+# SOURCES += ../icebreaker/fifo.sv
+# SOURCES += ../icebreaker/ram_1w1r_async.sv
+# SOURCES += ./fifo_tb.sv
 # ===== MAC Testbench =====
 # SOURCES += ./mac_tb.sv
 # ===== MAC Array Testbench =====

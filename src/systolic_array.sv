@@ -21,6 +21,8 @@ parameter width_p = 32
 ,output [0:0] valid_o
 ,input [0:0] yumi_i
 ,output [width_p-1:0] data_o
+// DEBUG ONLY
+,output [0:0] busy_o
 );
 
 localparam num_consumers_lp = array_width_p + array_height_p;
@@ -68,6 +70,8 @@ always_comb begin
 
     endcase
 end
+
+assign busy_o = (state_r == BUSY_S);
 
 always_ff @(posedge clk_i) begin
     if (reset_i) begin
@@ -128,8 +132,8 @@ onehot_counter
 #(num_consumers_lp)
 onehot_counter_inst
 (.clk_i(clk_i)
-// ,.en_i(en_i & valid_i)
-,.en_i(en_i & slow_en_r)
+,.en_i(en_i & valid_i)
+// ,.en_i(en_i & slow_en_r)
 ,.reset_i(reset_i | (reset_onehot_w))
 ,.count_o(onehot_w)
 );
