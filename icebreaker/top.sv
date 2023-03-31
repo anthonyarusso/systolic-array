@@ -23,8 +23,13 @@ module top
    wire reset_n_sync_r;
    wire reset_sync_r;
    wire reset_r; // Use this as your reset_signal
-   wire [0:0] en_w, data_w;
+   wire [0:0] pre_en_w, pre_data_w, en_w, data_w;
    wire [0:0] btn_2_w, btn_3_w, five_sec_w, clk_91hz_w, toggle_display_w;
+   // Guard both button wires with ~display_flag_r (don't allow button presses
+   // during the display state).
+   // TODO
+   // assign en_w = pre_en_w & ~display_flag_r;
+   // assign data_w = pre_data_w & ~{width_p{display_flag_r}};
 
    dff
      #()
@@ -196,7 +201,7 @@ fifo_inst
 ,.ready_o(fifo_ready_w)
 ,.valid_i(single_sipo_valid_w)
 ,.data_i(sipo_data_w)
-,.yumi_i(fifo_yumi_w & display_flag_r)
+,.yumi_i(fifo_yumi_w && display_flag_r)
 ,.valid_o(fifo_valid_w)
 ,.data_o(matrix_data_w)
 );
@@ -206,7 +211,8 @@ clock_divider
 five_sec_clock_divider_inst
 (.clk_i(clk_12mhz_i)
 ,.en_i(display_flag_r)
-,.reset_i(reset_r) // | flag_dw_w
+// TODO
+,.reset_i(reset_r) // || flag_dw_w
 ,.slow_clk_o(five_sec_w)
 );
 
@@ -241,7 +247,7 @@ two_ssd_inst
 ,.ssd_o(ssd_o)
 );
 
-// assign ssd_o = ~(sipo_data_w & {width_p{sipo_valid_w}});
+// assign ssd_o = ~(sipo_data_w && {width_p{sipo_valid_w}});
 // assign ssd_o = ~sipo_data_w; 
 // assign ssd_o = ~sys_data_w; 
 
