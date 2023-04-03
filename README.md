@@ -44,7 +44,7 @@ SystemVerilog module that implements a systolic array (for matrix multiplication
 Run the following commands to simulate the design using `iverilog` and/or `verilator`:
 ```bash
 cd systolic-array/sim
-make iverilog  # For iverilog only
+make iverilog  # For iverilog only (Currently broken!)
 make verilator # For verilator only
 make all       # For both
 ```
